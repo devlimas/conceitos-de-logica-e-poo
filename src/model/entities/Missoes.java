@@ -19,4 +19,40 @@ public class Missoes {
         this.prioridade = prioridade;
         this.tripulacao = tripulacao;
     }
+
+    public String getNomeMissao() {
+        return nomeMissao;
+    }
+
+    public void setNomeMissao(String nomeMissao) {
+        this.nomeMissao = nomeMissao;
+    }
+
+    public StatusMissao getStatusMissao() {
+        return statusMissao;
+    }
+
+    public void setStatusMissao(StatusMissao statusMissao) {
+        this.statusMissao = statusMissao;
+    }
+
+    public Integer getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(Integer prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public Estacao getTripulacao() {
+        return tripulacao;
+    }
+
+    public void setTripulacao(Estacao tripulacao) {
+        this.tripulacao = tripulacao;
+    }
+
+    public void addTarefa(Tarefa tarefa){
+        tarefas.add(tarefa);
+    }
 }
