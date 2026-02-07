@@ -1,23 +1,24 @@
 package model.entities;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public abstract class Pessoa {
-    private int id;
+    private UUID id;
     private String nome;
-    private LocalDate data;
+    private LocalDate dataNascimento;
 
-    public Pessoa(int id, String nome, LocalDate data) {
+    public Pessoa(UUID id, String nome, LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;
-        this.data = data;
+        this.dataNascimento = dataNascimento;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -29,11 +30,11 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }

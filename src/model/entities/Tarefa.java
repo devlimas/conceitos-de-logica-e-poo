@@ -1,59 +1,61 @@
 package model.entities;
 
-import java.time.LocalTime;
+import model.enums.NivelExperiencia;
+
+import java.util.Random;
 
 public class Tarefa {
-    private String descricaoDaTarefa;
-    private LocalTime tempoEstimativo;
-    private Astronauta responsavel;
-    private boolean concluida;
+    private String nomeTarefa;
+    private Astronauta astronauta;
+    private Random tempoTarefa;
+    private NivelExperiencia nivelDaTarefa;
+    private Boolean isConcluida;
 
-    public Tarefa(String descricaoDaTarefa, LocalTime tempoEstimativo, Astronauta responsavel, boolean concluida) {
-        this.descricaoDaTarefa = descricaoDaTarefa;
-        this.tempoEstimativo = tempoEstimativo;
-        this.responsavel = responsavel;
-        this.concluida = concluida;
+    public Tarefa(String nomeTarefa, Astronauta astronauta, Random tempoTarefa, NivelExperiencia nivelDaTarefa, Boolean isConcluida) {
+        this.nomeTarefa = nomeTarefa;
+        this.astronauta = astronauta;
+        this.tempoTarefa = tempoTarefa;
+        this.nivelDaTarefa = nivelDaTarefa;
+        this.isConcluida = isConcluida;
     }
 
-    public String getDescricaoDaTarefa() {
-        return descricaoDaTarefa;
+    public String getNomeTarefa() {
+        return nomeTarefa;
     }
 
-    public void setDescricaoDaTarefa(String descricaoDaTarefa) {
-        this.descricaoDaTarefa = descricaoDaTarefa;
+    public void setNomeTarefa(String nomeTarefa) {
+        this.nomeTarefa = nomeTarefa;
     }
 
-    public LocalTime getTempoEstimativo() {
-        return tempoEstimativo;
+    public Astronauta getAstronauta() {
+        return astronauta;
     }
 
-    public void setTempoEstimativo(LocalTime tempoEstimativo) {
-        this.tempoEstimativo = tempoEstimativo;
+    public void setAstronauta(Astronauta astronauta) {
+        this.astronauta = astronauta;
     }
 
-    public Astronauta getResponsavel() {
-        return responsavel;
+    public Random getTempoTarefa() {
+        return tempoTarefa;
     }
 
-    public void setResponsavel(Astronauta responsavel) {
-        this.responsavel = responsavel;
+    public void setTempoTarefa(Random tempoTarefa) {
+        this.tempoTarefa = tempoTarefa;
     }
 
-    public boolean isConcluida() {
-        return concluida;
+    public NivelExperiencia getNivelDaTarefa() {
+        return nivelDaTarefa;
     }
 
-    public void setConcluida(boolean concluida) {
-        this.concluida = concluida;
+    public void setNivelDaTarefa(NivelExperiencia nivelDaTarefa) {
+        this.nivelDaTarefa = nivelDaTarefa;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder msg = new StringBuilder();
-        msg.append("Descrição da tarefa:" + descricaoDaTarefa + "\n");
-        msg.append("Tempo da tarefa:" + tempoEstimativo + " Minutos\n");
-        msg.append("Responsavel:" + responsavel.getNome() + "\n");
-        msg.append("Concluida:" + concluida + "\n");
-        return msg.toString();
+    public Boolean getConcluida() {
+        return isConcluida;
+    }
+
+    public void setConcluida(Boolean concluida) {
+        isConcluida = concluida;
     }
 }

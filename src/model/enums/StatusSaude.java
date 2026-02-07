@@ -1,8 +1,7 @@
 package model.enums;
 
-public enum StatusDeSaude {
+public enum StatusSaude {
     SAUDAVEL,
-    CANSADO,
     FERIDO,
-
+    CANSADO
 }

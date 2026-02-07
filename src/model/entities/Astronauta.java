@@ -1,88 +1,105 @@
 package model.entities;
 
-import model.enums.StatusDeSaude;
+import model.enums.Especialidade;
+import model.enums.NivelExperiencia;
+import model.enums.StatusSaude;
 
 import java.time.LocalDate;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
-public final class Astronauta extends Pessoa{
-    private String especialidade;
-    private int nivelExperiencia;
-    private StatusDeSaude saude;
+public class Astronauta extends Pessoa {
+    private Especialidade especialidade;
+    private NivelExperiencia nivelExperiencia;
+    private StatusSaude statusSaude;
+    private Integer fadiga;
 
-    public Astronauta(int id, String nome, LocalDate data, String especialidade, int nivelExperiencia, StatusDeSaude saude) {
-        super(id, nome, data);
+    private List<Tarefa> tarefas = new ArrayList<>();
+
+    public Astronauta(UUID id, String nome, LocalDate dataNascimento, Especialidade especialidade, NivelExperiencia nivelExperiencia, StatusSaude statusSaude, Integer fadiga) {
+        super(id, nome, dataNascimento);
         this.especialidade = especialidade;
         this.nivelExperiencia = nivelExperiencia;
-        this.saude = saude;
+        this.statusSaude = statusSaude;
+        this.fadiga = fadiga;
     }
 
-    public String getEspecialidade() {
+    public Especialidade getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(String especialidade) {
+    public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
 
-    public int getNivelExperiencia() {
+    public NivelExperiencia getNivelExperiencia() {
         return nivelExperiencia;
     }
 
-    public void setNivelExperiencia(int nivelExperiencia) {
+    public void setNivelExperiencia(NivelExperiencia nivelExperiencia) {
         this.nivelExperiencia = nivelExperiencia;
     }
 
-    public StatusDeSaude getSaude() {
-        return saude;
+    public StatusSaude getStatusSaude() {
+        return statusSaude;
     }
 
-    public void setSaude(StatusDeSaude saude) {
-        this.saude = saude;
+    public void setStatusSaude(StatusSaude statusSaude) {
+        this.statusSaude = statusSaude;
     }
 
-    public void executarUmaTarefa(Tarefa t){
+    public Integer getFadiga() {
+        return fadiga;
+    }
 
-        //Caso o status da missão já venha concluida
-        if (t.isConcluida()){
-            System.out.println("A tarefa já está concluida");
-            this.saude = StatusDeSaude.SAUDAVEL;
-            return;
-        }
+    public void setFadiga(Integer fadiga) {
+        this.fadiga = fadiga;
+    }
 
-        //Caso o austronauta desta missão esteja ferido
-        if (this.saude == StatusDeSaude.FERIDO){
-            System.out.println("Funcionario ferido, incapaz de executar sua função");
-            return;
-        }
+    public void AddTarefas(Tarefa addTarefas){
+        this.tarefas.add(addTarefas);
+    }
 
-        Random random = new Random();
-        int chance = random.nextInt(10) + 1;
+    @Override
+    public void setId(UUID id) {
+        super.setId(id);
+    }
 
-        //Adicionei um random de 1 a 10 para que crie uma possibilidade da dificuldade da tarefa ser maior que sua experiencia
-        if (chance <= nivelExperiencia){
-            System.out.println("Tarefa concluida");
-            t.setConcluida(true);
-            this.saude = StatusDeSaude.CANSADO;
-            return;
-        }
-        else {
-            System.out.println(getNome() + " Falhou em sua tarefa por falta de experiencia: " + nivelExperiencia);
-            this.saude = StatusDeSaude.FERIDO;
-            return;
-        }
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
 
+    @Override
+    public void setDataNascimento(LocalDate dataNascimento) {
+        super.setDataNascimento(dataNascimento);
+    }
+
+    @Override
+    public UUID getId() {
+        return super.getId();
+    }
+
+    @Override
+    public String getNome(){
+        return super.getNome();
+    }
+
+    @Override
+    public LocalDate getDataNascimento(){
+        return super.getDataNascimento();
     }
 
     @Override
     public String toString() {
-        StringBuilder msg = new StringBuilder();
-        msg.append("Astronauta:" + getNome() + "\n");
-        msg.append("id:" + getId() + "\n");
-        msg.append("Data de nascimento:" + getData() + "\n");
-        msg.append("Especialidade:" + especialidade + "\n");
-        msg.append("Nivel de experiência:" + nivelExperiencia + "\n");
-        msg.append("Status de saúde:" + saude + "\n");
-        return msg.toString();
+        return  "Id" + getId() + "\n" +
+                "Astronauta:" + getNome() + "\n" +
+                "Data de nascimento:" + getDataNascimento() + "\n" +
+                "Status de saude:" + statusSaude + "\n" +
+                "Nivel de experiencia:" + nivelExperiencia + "\n" +
+                "Especialidade:" + especialidade;
     }
+
+
 }
