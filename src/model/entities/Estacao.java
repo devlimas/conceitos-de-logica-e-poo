@@ -4,48 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Estacao {
-    private String nomeEstacao;
-    private Integer maxTripulantes;
-    private Relatorio relatorioEstacao;
+    private String nomeDaEstacao;
+    private List<Astronauta> astronautasDisponiveis = new ArrayList<>();
+    private List<Missao> missoes = new ArrayList<>();
 
-    private List<Astronauta> astronautas = new ArrayList<>();
-    private List<Missoes> missoes = new ArrayList<>();
-
-    public Estacao(String nomeEstacao, Integer maxTripulantes, Relatorio relatorioEstacao) {
-        this.nomeEstacao = nomeEstacao;
-        this.maxTripulantes = maxTripulantes;
-        this.relatorioEstacao = relatorioEstacao;
+    public Estacao(String nomeDaEstacao) {
+        this.nomeDaEstacao = nomeDaEstacao;
     }
 
-    public String getNomeEstacao() {
-        return nomeEstacao;
+    public String getNomeDaEstacao() {
+        return nomeDaEstacao;
     }
 
-    public void setNomeEstacao(String nomeEstacao) {
-        this.nomeEstacao = nomeEstacao;
+    public void setNomeDaEstacao(String nomeDaEstacao) {
+        this.nomeDaEstacao = nomeDaEstacao;
     }
 
-    public Integer getMaxTripulantes() {
-        return maxTripulantes;
+    public void addAstronautaDisponiveis(Astronauta astronauta){
+        astronautasDisponiveis.add(astronauta);
     }
 
-    public void setMaxTripulantes(Integer maxTripulantes) {
-        this.maxTripulantes = maxTripulantes;
-    }
-
-    public Relatorio getRelatorioEstacao() {
-        return relatorioEstacao;
-    }
-
-    public void setRelatorioEstacao(Relatorio relatorioEstacao) {
-        this.relatorioEstacao = relatorioEstacao;
-    }
-
-    public void addAstronauta(Astronauta astronauta){
-        astronautas.add(astronauta);
-    }
-
-    public void addMissao(Missoes missao){
+    //Essas missoes podem ou nao esta disponiveis, depende do status dela, caso nao estaja, existira uma regra de negocio que nao vai permitir qu as naves aceitem a missao
+    public void addMissao(Missao missao){
         missoes.add(missao);
+    }
+
+    public List<Astronauta> getAstronautasDisponiveis() {
+        return astronautasDisponiveis;
+    }
+
+    public List<Missao> getMissoes() {
+        return missoes;
     }
 }

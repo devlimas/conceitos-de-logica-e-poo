@@ -1,25 +1,23 @@
 package model.entities;
 
 import java.time.LocalDate;
-import java.util.UUID;
+import java.time.temporal.ChronoUnit;
 
+//Classe abstrata de Pessoa para Astronauta
 public abstract class Pessoa {
-    private UUID id;
     private String nome;
     private LocalDate dataNascimento;
 
-    public Pessoa(UUID id, String nome, LocalDate dataNascimento) {
-        this.id = id;
+    public Pessoa(String nome, LocalDate dataNascimento) {
         this.nome = nome;
-        this.dataNascimento = dataNascimento;
-    }
 
-    public UUID getId() {
-        return id;
-    }
+        if (ChronoUnit.YEARS.between(dataNascimento, LocalDate.now()) >= 18) {
+            this.dataNascimento = dataNascimento;
+        }
+        else {
 
-    public void setId(UUID id) {
-        this.id = id;
+        }
+
     }
 
     public String getNome() {

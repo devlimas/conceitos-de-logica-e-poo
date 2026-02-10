@@ -5,19 +5,19 @@ import model.enums.StatusMissao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Missoes {
+public class Missao {
     private String nomeMissao;
     private StatusMissao statusMissao;
     private Integer prioridade;
+    private Relatorio relatorioMissao;
 
-    private Estacao tripulacao;
     private List<Tarefa> tarefas = new ArrayList<>();
 
-    public Missoes(String nomeMissao, StatusMissao statusMissao, Integer prioridade, Estacao tripulacao) {
+    public Missao(String nomeMissao, StatusMissao statusMissao, Integer prioridade, Relatorio relatorioMissao) {
         this.nomeMissao = nomeMissao;
         this.statusMissao = statusMissao;
         this.prioridade = prioridade;
-        this.tripulacao = tripulacao;
+        this.relatorioMissao = relatorioMissao;
     }
 
     public String getNomeMissao() {
@@ -44,15 +44,19 @@ public class Missoes {
         this.prioridade = prioridade;
     }
 
-    public Estacao getTripulacao() {
-        return tripulacao;
+    public Relatorio getRelatorioMissao() {
+        return relatorioMissao;
     }
 
-    public void setTripulacao(Estacao tripulacao) {
-        this.tripulacao = tripulacao;
+    public void setRelatorioMissao(Relatorio relatorioMissao) {
+        this.relatorioMissao = relatorioMissao;
     }
 
     public void addTarefa(Tarefa tarefa){
         tarefas.add(tarefa);
+    }
+
+    public List<Tarefa> getTarefas() {
+        return tarefas;
     }
 }

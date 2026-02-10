@@ -7,22 +7,36 @@ import model.enums.StatusSaude;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Astronauta extends Pessoa {
+
+    //A escolhe de Integer em vez de UUID foi feita, pelo motivo que eu nao queria um ID grande e feito com String como: 245a8650-e29b-41d4-a716-446655440000
+    private Integer id;
     private Especialidade especialidade;
     private NivelExperiencia nivelExperiencia;
     private StatusSaude statusSaude;
     private Integer fadiga;
+    private Relatorio relatorioIndividual;
 
+    //As tarefas atribuidas a esse astronauta de acordo com a missao
     private List<Tarefa> tarefas = new ArrayList<>();
 
-    public Astronauta(UUID id, String nome, LocalDate dataNascimento, Especialidade especialidade, NivelExperiencia nivelExperiencia, StatusSaude statusSaude, Integer fadiga) {
-        super(id, nome, dataNascimento);
+    public Astronauta(String nome, LocalDate dataNascimento, Integer id, Especialidade especialidade, NivelExperiencia nivelExperiencia, StatusSaude statusSaude, Integer fadiga, Relatorio relatorioIndividual) {
+        super(nome, dataNascimento);
+        this.id = id;
         this.especialidade = especialidade;
         this.nivelExperiencia = nivelExperiencia;
         this.statusSaude = statusSaude;
         this.fadiga = fadiga;
+        this.relatorioIndividual = new Relatorio();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Especialidade getEspecialidade() {
@@ -57,13 +71,16 @@ public class Astronauta extends Pessoa {
         this.fadiga = fadiga;
     }
 
-    public void AddTarefas(Tarefa addTarefas){
-        this.tarefas.add(addTarefas);
+    public Relatorio getRelatorioIndividual() {
+        return relatorioIndividual;
     }
 
-    @Override
-    public void setId(UUID id) {
-        super.setId(id);
+    public void setRelatorioIndividual(Relatorio relatorioIndividual) {
+        this.relatorioIndividual = relatorioIndividual;
+    }
+
+    public void AddTarefas(Tarefa addTarefas){
+        this.tarefas.add(addTarefas);
     }
 
     @Override
@@ -74,11 +91,6 @@ public class Astronauta extends Pessoa {
     @Override
     public void setDataNascimento(LocalDate dataNascimento) {
         super.setDataNascimento(dataNascimento);
-    }
-
-    @Override
-    public UUID getId() {
-        return super.getId();
     }
 
     @Override
