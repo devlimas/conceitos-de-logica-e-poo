@@ -1,99 +1,62 @@
 package model.entities;
 
-import model.enums.StatusDaMissao;
-import model.exceptions.AstronautaNaoAptoException;
+import model.enums.StatusMissao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Missao {
-    private String nomeDaMissao;
-    private String objetivoDaMissao;
-    private StatusDaMissao statusDaMissao;
-    private int prioridade;
-    private String funcao;
+    private String nomeMissao;
+    private StatusMissao statusMissao;
+    private Integer prioridade;
+    private Relatorio relatorioMissao;
 
-    private List<Astronauta> tripulacao = new ArrayList<>();
-    private List<Tarefa> tarefasDaMissao = new ArrayList<>();
+    private List<Tarefa> tarefas = new ArrayList<>();
 
-    public Missao(String nomeDaMissao, String objetivoDaMissao, StatusDaMissao statusDaMissao, int prioridade, String funcao) {
-        this.nomeDaMissao = nomeDaMissao;
-        this.objetivoDaMissao = objetivoDaMissao;
-        this.statusDaMissao = statusDaMissao;
+    public Missao(String nomeMissao, StatusMissao statusMissao, Integer prioridade, Relatorio relatorioMissao) {
+        this.nomeMissao = nomeMissao;
+        this.statusMissao = statusMissao;
         this.prioridade = prioridade;
-        this.funcao = funcao;
+        this.relatorioMissao = relatorioMissao;
     }
 
-    public String getNomeDaMissao() {
-        return nomeDaMissao;
+    public String getNomeMissao() {
+        return nomeMissao;
     }
 
-    public void setNomeDaMissao(String nomeDaMissao) {
-        this.nomeDaMissao = nomeDaMissao;
+    public void setNomeMissao(String nomeMissao) {
+        this.nomeMissao = nomeMissao;
     }
 
-    public String getObjetivoDaMissao() {
-        return objetivoDaMissao;
+    public StatusMissao getStatusMissao() {
+        return statusMissao;
     }
 
-    public void setObjetivoDaMissao(String objetivoDaMissao) {
-        this.objetivoDaMissao = objetivoDaMissao;
+    public void setStatusMissao(StatusMissao statusMissao) {
+        this.statusMissao = statusMissao;
     }
 
-    public StatusDaMissao getStatusDaMissao() {
-        return statusDaMissao;
-    }
-
-    public void setStatusDaMissao(StatusDaMissao statusDaMissao) {
-        this.statusDaMissao = statusDaMissao;
-    }
-
-    public int getPrioridade() {
+    public Integer getPrioridade() {
         return prioridade;
     }
 
-    public void setPrioridade(int prioridade) {
+    public void setPrioridade(Integer prioridade) {
         this.prioridade = prioridade;
     }
 
-    public String getFuncao() {
-        return funcao;
+    public Relatorio getRelatorioMissao() {
+        return relatorioMissao;
     }
 
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
+    public void setRelatorioMissao(Relatorio relatorioMissao) {
+        this.relatorioMissao = relatorioMissao;
     }
 
-    public List<Astronauta> getTripulacao() {
-        return tripulacao;
+    public void addTarefa(Tarefa tarefa){
+        tarefas.add(tarefa);
     }
 
-    //Função para a verificar se o funcionario tem a especialidade pedida na missao
-    public void recrutarAstronauta(Astronauta funcionario) throws AstronautaNaoAptoException {
-        if (!funcionario.getEspecialidade().equalsIgnoreCase(funcao)){
-            throw new AstronautaNaoAptoException("O Astronauta não tem especialidade para concluir esta missão");
-        }
-        else {
-            tripulacao.add(funcionario);
-        }
-    }
-
-    public List<Tarefa> getTarefasDaMissao() {
-        return tarefasDaMissao;
-    }
-
-    public void addTarefasDaMissao(Tarefa tarefas) {
-        tarefasDaMissao.add(tarefas);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder msg = new StringBuilder();
-        msg.append("Missão:" + nomeDaMissao + "\n");
-        msg.append("Objetivo:" + objetivoDaMissao + "\n");
-        msg.append("Status da missão:" + statusDaMissao + "\n");
-        msg.append("Prioridade:" + prioridade + "\n");
-        msg.append("Função requisitada:" + funcao + "\n");
-        return msg.toString();
+    public List<Tarefa> getTarefas() {
+        return tarefas;
     }
 }

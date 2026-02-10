@@ -1,88 +1,117 @@
 package model.entities;
 
-import model.enums.StatusDeSaude;
+import model.enums.Especialidade;
+import model.enums.NivelExperiencia;
+import model.enums.StatusSaude;
 
 import java.time.LocalDate;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
-public final class Astronauta extends Pessoa{
-    private String especialidade;
-    private int nivelExperiencia;
-    private StatusDeSaude saude;
+public class Astronauta extends Pessoa {
 
-    public Astronauta(int id, String nome, LocalDate data, String especialidade, int nivelExperiencia, StatusDeSaude saude) {
-        super(id, nome, data);
+    //A escolhe de Integer em vez de UUID foi feita, pelo motivo que eu nao queria um ID grande e feito com String como: 245a8650-e29b-41d4-a716-446655440000
+    private Integer id;
+    private Especialidade especialidade;
+    private NivelExperiencia nivelExperiencia;
+    private StatusSaude statusSaude;
+    private Integer fadiga;
+    private Relatorio relatorioIndividual;
+
+    //As tarefas atribuidas a esse astronauta de acordo com a missao
+    private List<Tarefa> tarefas = new ArrayList<>();
+
+    public Astronauta(String nome, LocalDate dataNascimento, Integer id, Especialidade especialidade, NivelExperiencia nivelExperiencia, StatusSaude statusSaude, Integer fadiga, Relatorio relatorioIndividual) {
+        super(nome, dataNascimento);
+        this.id = id;
         this.especialidade = especialidade;
         this.nivelExperiencia = nivelExperiencia;
-        this.saude = saude;
+        this.statusSaude = statusSaude;
+        this.fadiga = fadiga;
+        this.relatorioIndividual = new Relatorio();
     }
 
-    public String getEspecialidade() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Especialidade getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(String especialidade) {
+    public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
 
-    public int getNivelExperiencia() {
+    public NivelExperiencia getNivelExperiencia() {
         return nivelExperiencia;
     }
 
-    public void setNivelExperiencia(int nivelExperiencia) {
+    public void setNivelExperiencia(NivelExperiencia nivelExperiencia) {
         this.nivelExperiencia = nivelExperiencia;
     }
 
-    public StatusDeSaude getSaude() {
-        return saude;
+    public StatusSaude getStatusSaude() {
+        return statusSaude;
     }
 
-    public void setSaude(StatusDeSaude saude) {
-        this.saude = saude;
+    public void setStatusSaude(StatusSaude statusSaude) {
+        this.statusSaude = statusSaude;
     }
 
-    public void executarUmaTarefa(Tarefa t){
+    public Integer getFadiga() {
+        return fadiga;
+    }
 
-        //Caso o status da missão já venha concluida
-        if (t.isConcluida()){
-            System.out.println("A tarefa já está concluida");
-            this.saude = StatusDeSaude.SAUDAVEL;
-            return;
-        }
+    public void setFadiga(Integer fadiga) {
+        this.fadiga = fadiga;
+    }
 
-        //Caso o austronauta desta missão esteja ferido
-        if (this.saude == StatusDeSaude.FERIDO){
-            System.out.println("Funcionario ferido, incapaz de executar sua função");
-            return;
-        }
+    public Relatorio getRelatorioIndividual() {
+        return relatorioIndividual;
+    }
 
-        Random random = new Random();
-        int chance = random.nextInt(10) + 1;
+    public void setRelatorioIndividual(Relatorio relatorioIndividual) {
+        this.relatorioIndividual = relatorioIndividual;
+    }
 
-        //Adicionei um random de 1 a 10 para que crie uma possibilidade da dificuldade da tarefa ser maior que sua experiencia
-        if (chance <= nivelExperiencia){
-            System.out.println("Tarefa concluida");
-            t.setConcluida(true);
-            this.saude = StatusDeSaude.CANSADO;
-            return;
-        }
-        else {
-            System.out.println(getNome() + " Falhou em sua tarefa por falta de experiencia: " + nivelExperiencia);
-            this.saude = StatusDeSaude.FERIDO;
-            return;
-        }
+    public void AddTarefas(Tarefa addTarefas){
+        this.tarefas.add(addTarefas);
+    }
 
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+
+    @Override
+    public void setDataNascimento(LocalDate dataNascimento) {
+        super.setDataNascimento(dataNascimento);
+    }
+
+    @Override
+    public String getNome(){
+        return super.getNome();
+    }
+
+    @Override
+    public LocalDate getDataNascimento(){
+        return super.getDataNascimento();
     }
 
     @Override
     public String toString() {
-        StringBuilder msg = new StringBuilder();
-        msg.append("Astronauta:" + getNome() + "\n");
-        msg.append("id:" + getId() + "\n");
-        msg.append("Data de nascimento:" + getData() + "\n");
-        msg.append("Especialidade:" + especialidade + "\n");
-        msg.append("Nivel de experiência:" + nivelExperiencia + "\n");
-        msg.append("Status de saúde:" + saude + "\n");
-        return msg.toString();
+        return  "Id" + getId() + "\n" +
+                "Astronauta:" + getNome() + "\n" +
+                "Data de nascimento:" + getDataNascimento() + "\n" +
+                "Status de saude:" + statusSaude + "\n" +
+                "Nivel de experiencia:" + nivelExperiencia + "\n" +
+                "Especialidade:" + especialidade;
     }
+
+
 }
