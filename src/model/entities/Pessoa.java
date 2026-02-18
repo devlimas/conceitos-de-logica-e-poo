@@ -1,5 +1,7 @@
 package model.entities;
 
+import model.exceptions.IdadeMin;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -8,16 +10,17 @@ public abstract class Pessoa {
     private String nome;
     private LocalDate dataNascimento;
 
+    public Pessoa() {
+    }
+
     public Pessoa(String nome, LocalDate dataNascimento) {
         this.nome = nome;
 
-        if (ChronoUnit.YEARS.between(dataNascimento, LocalDate.now()) >= 18) {
-            this.dataNascimento = dataNascimento;
-        }
-        else {
-
+        if (ChronoUnit.YEARS.between(dataNascimento, LocalDate.now()) < 18) {
+            throw new IdadeMin("Erro, idade minima de 18 anos");
         }
 
+        this.dataNascimento = dataNascimento;
     }
 
     public String getNome() {

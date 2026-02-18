@@ -6,7 +6,11 @@ import java.util.List;
 public class Estacao {
     private String nomeDaEstacao;
     private List<Astronauta> astronautasDisponiveis = new ArrayList<>();
+    private List<Nave> naves = new ArrayList<>();
     private List<Missao> missoes = new ArrayList<>();
+
+    public Estacao() {
+    }
 
     public Estacao(String nomeDaEstacao) {
         this.nomeDaEstacao = nomeDaEstacao;
@@ -24,6 +28,10 @@ public class Estacao {
         astronautasDisponiveis.add(astronauta);
     }
 
+    public void addNaves(Nave nave){
+        naves.add(nave);
+    }
+
     //Essas missoes podem ou nao esta disponiveis, depende do status dela, caso nao estaja, existira uma regra de negocio que nao vai permitir qu as naves aceitem a missao
     public void addMissao(Missao missao){
         missoes.add(missao);
@@ -36,4 +44,14 @@ public class Estacao {
     public List<Missao> getMissoes() {
         return missoes;
     }
+
+    public List<Nave> getNaves() {
+        return naves;
+    }
+
+    public List<Astronauta> AstronautaConvocado(Astronauta astronauta){
+        astronautasDisponiveis.remove(astronauta);
+        return astronautasDisponiveis;
+    }
 }
+

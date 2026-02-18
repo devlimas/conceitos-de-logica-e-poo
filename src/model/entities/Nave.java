@@ -1,6 +1,10 @@
 package model.entities;
 
+import model.enums.StatusMissao;
+import model.enums.StatusNave;
+import model.enums.StatusSaude;
 import model.enums.TamanhoNave;
+import model.exceptions.LimiteTripulantes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +15,7 @@ public class Nave {
     private Estacao estacao;
     private String nomeNave;
     private TamanhoNave tamanhoNave;
+    private StatusNave statusNave;
 
     //Uma missao por nave
     private Missao missao;
@@ -20,11 +25,12 @@ public class Nave {
 
     private List<Astronauta> tripulantes = new ArrayList<>();
 
-    public Nave(Estacao estacao, String nomeNave, TamanhoNave tamanhoNave, Missao missao, Relatorio relatorioEquipe) {
+    public Nave(Estacao estacao, String nomeNave, TamanhoNave tamanhoNave, StatusNave statusNave,Missao missao, Relatorio relatorioEquipe) {
         this.estacao = estacao;
         this.nomeNave = nomeNave;
         this.tamanhoNave = tamanhoNave;
-        this.missao = missao;
+        this.statusNave = statusNave;
+        this.missao = new Missao();
         this.relatorioEquipe = relatorioEquipe;
     }
 
@@ -41,6 +47,7 @@ public class Nave {
     }
 
     public void setMissao(Missao missao) {
+        this.missao.setStatusMissao(StatusMissao.ATIVA);
         this.missao = missao;
     }
 
@@ -68,11 +75,25 @@ public class Nave {
         this.tamanhoNave = tamanhoNave;
     }
 
+    public List<Astronauta> getTripulantes() {
+        return tripulantes;
+    }
+
+
     public void addTripulantes(Astronauta tripulante){
+        if (tripulantes.size() >= this.tamanhoNave.getMaxTripulantes()){
+            throw new LimiteTripulantes("Limite de tripulantes atingidos");
+        }
+        estacao.AstronautaConvocado(tripulante);
         tripulantes.add(tripulante);
     }
 
-    public List<Astronauta> getTripulantes() {
-        return tripulantes;
+    public String alaMedica(Astronauta tripulante){
+        tripulante.setFadiga(0);
+        tripulante.setStatusSaude(StatusSaude.SAUDAVEL);
+
+        return "Tripulante:" + tripulante.getNome() + "\n" +
+                "Saúde:" + tripulante.getStatusSaude() + "\n" +
+                "Fadiga:" + tripulante.getFadiga();
     }
 }

@@ -11,11 +11,20 @@ public class Missao {
     private Integer prioridade;
     private Relatorio relatorioMissao;
 
+    public Missao() {
+    }
+
     private List<Tarefa> tarefas = new ArrayList<>();
 
     public Missao(String nomeMissao, StatusMissao statusMissao, Integer prioridade, Relatorio relatorioMissao) {
         this.nomeMissao = nomeMissao;
         this.statusMissao = statusMissao;
+
+        // Fiz a escolha de fazer a prioridade com int, em vez de enum apenas para mostrar outra maneira de ser feita, por mais que não seja recomendado já que enum brilha aqui
+        if(prioridade > 3){
+            throw new IllegalArgumentException("O nivel de prioridade é definido de 1 a 3");
+        }
+
         this.prioridade = prioridade;
         this.relatorioMissao = relatorioMissao;
     }
