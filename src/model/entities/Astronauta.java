@@ -21,13 +21,27 @@ public class Astronauta extends Pessoa {
     //As tarefas atribuidas a esse astronauta de acordo com a missao
     private List<Tarefa> tarefas = new ArrayList<>();
 
-    public Astronauta(String nome, LocalDate dataNascimento, Integer id, Especialidade especialidade, NivelExperiencia nivelExperiencia, StatusSaude statusSaude, Integer fadiga, Relatorio relatorioIndividual) {
+    public Astronauta() {
+    }
+
+    public Astronauta(String nome, LocalDate dataNascimento, Integer id, Especialidade especialidade, NivelExperiencia nivelExperiencia, Integer fadiga, Relatorio relatorioIndividual) {
         super(nome, dataNascimento);
+
         this.id = id;
         this.especialidade = especialidade;
         this.nivelExperiencia = nivelExperiencia;
-        this.statusSaude = statusSaude;
-        this.fadiga = fadiga;
+
+        if (fadiga <= 45){
+            this.fadiga = fadiga;
+            this.statusSaude = StatusSaude.SAUDAVEL;
+        } else if (fadiga > 45 && fadiga <= 100) {
+            this.fadiga = fadiga;
+            this.statusSaude = StatusSaude.CANSADO;
+        } else if (fadiga > 100) {
+            this.fadiga = fadiga;
+            this.statusSaude = StatusSaude.FERIDO;
+        }
+
         this.relatorioIndividual = new Relatorio();
     }
 
@@ -79,8 +93,12 @@ public class Astronauta extends Pessoa {
         this.relatorioIndividual = relatorioIndividual;
     }
 
-    public void AddTarefas(Tarefa addTarefas){
-        this.tarefas.add(addTarefas);
+    public void AddTarefas(Tarefa tarefa){
+        tarefas.add(tarefa);
+    }
+
+    public List<Tarefa> getTarefas() {
+        return tarefas;
     }
 
     @Override
@@ -105,13 +123,17 @@ public class Astronauta extends Pessoa {
 
     @Override
     public String toString() {
-        return  "Id" + getId() + "\n" +
-                "Astronauta:" + getNome() + "\n" +
-                "Data de nascimento:" + getDataNascimento() + "\n" +
-                "Status de saude:" + statusSaude + "\n" +
-                "Nivel de experiencia:" + nivelExperiencia + "\n" +
-                "Especialidade:" + especialidade;
+        StringBuilder msg = new StringBuilder();
+        msg.append("Id: " + getId() + "\n" +
+                        "Astronauta: " + getNome() + "\n" +
+                        "Data de nascimento: " + getDataNascimento() + "\n" +
+                        "Status de saude: " + getStatusSaude() + "\n" +
+                        "Fadiga: " + getFadiga() + "\n" +
+                        "Nivel de experiencia: " + getNivelExperiencia() + "\n" +
+                        "Especialidade: " + getEspecialidade() + "\n" +
+                        "Relatorio: " + getRelatorioIndividual()
+        );
+        return msg.toString();
     }
-
 
 }

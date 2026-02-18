@@ -10,4 +10,8 @@ public enum TamanhoNave {
     TamanhoNave(int maxTripulantes) {
         this.maxTripulantes = maxTripulantes;
     }
+
+    public int getMaxTripulantes() {
+        return maxTripulantes;
+    }
 }

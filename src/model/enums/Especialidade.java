@@ -4,5 +4,6 @@ public enum Especialidade {
     ENGENHEIRO,
     MEDICO,
     PILOTO,
-    CIENTISTA
+    CIENTISTA,
+    ZELADOR
 }
