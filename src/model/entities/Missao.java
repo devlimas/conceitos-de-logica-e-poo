@@ -16,7 +16,7 @@ public class Missao {
 
     private List<Tarefa> tarefas = new ArrayList<>();
 
-    public Missao(String nomeMissao, StatusMissao statusMissao, Integer prioridade, Relatorio relatorioMissao) {
+    public Missao(String nomeMissao, StatusMissao statusMissao, Integer prioridade) {
         this.nomeMissao = nomeMissao;
         this.statusMissao = statusMissao;
 
@@ -26,7 +26,6 @@ public class Missao {
         }
 
         this.prioridade = prioridade;
-        this.relatorioMissao = relatorioMissao;
     }
 
     public String getNomeMissao() {
@@ -61,11 +60,28 @@ public class Missao {
         this.relatorioMissao = relatorioMissao;
     }
 
-    public void addTarefa(Tarefa tarefa){
-        tarefas.add(tarefa);
+    public void setTarefas(List<Tarefa> tarefas) {
+        this.tarefas = tarefas;
     }
 
     public List<Tarefa> getTarefas() {
         return tarefas;
+    }
+
+    public void addTarefa(Tarefa tarefa){
+        for(Tarefa leitor: tarefas){
+            if (leitor.getNomeTarefa().equals(tarefa.getNomeTarefa())){
+                throw new IllegalArgumentException("Tarefa já existe dentro da lista desta missão");
+            }
+        }
+        tarefas.add(tarefa);
+    }
+
+    @Override
+    public String toString() {
+        return "Missao:" + "\n" +
+                "Nome da Missao: " + nomeMissao + "\n" +
+                "Status da Missao: " + statusMissao + "\n" +
+                "Prioridade: " + prioridade +  "\n\n";
     }
 }

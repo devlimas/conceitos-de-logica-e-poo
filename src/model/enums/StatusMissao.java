@@ -4,5 +4,7 @@ public enum StatusMissao {
     PENDENTE,
     ATIVA,
     FALHA,
-    CONCLUIDA
+    CONCLUIDA;
+
 }
+
