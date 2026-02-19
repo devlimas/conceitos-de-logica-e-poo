@@ -1,5 +1,6 @@
 package model.entities;
 
+import model.enums.Disponibilidade;
 import model.enums.Especialidade;
 import model.enums.NivelExperiencia;
 import model.enums.StatusSaude;
@@ -14,6 +15,7 @@ public class Astronauta extends Pessoa {
     private Integer id;
     private Especialidade especialidade;
     private NivelExperiencia nivelExperiencia;
+    private Disponibilidade disponibilidade;
     private StatusSaude statusSaude;
     private Integer fadiga;
     private Relatorio relatorioIndividual;
@@ -24,7 +26,7 @@ public class Astronauta extends Pessoa {
     public Astronauta() {
     }
 
-    public Astronauta(String nome, LocalDate dataNascimento, Integer id, Especialidade especialidade, NivelExperiencia nivelExperiencia, Integer fadiga, Relatorio relatorioIndividual) {
+    public Astronauta(String nome, LocalDate dataNascimento, Integer id, Especialidade especialidade, NivelExperiencia nivelExperiencia, Integer fadiga) {
         super(nome, dataNascimento);
 
         this.id = id;
@@ -34,15 +36,24 @@ public class Astronauta extends Pessoa {
         if (fadiga <= 45){
             this.fadiga = fadiga;
             this.statusSaude = StatusSaude.SAUDAVEL;
-        } else if (fadiga > 45 && fadiga <= 100) {
+        }
+        else if (fadiga > 45 && fadiga <= 100) {
             this.fadiga = fadiga;
             this.statusSaude = StatusSaude.CANSADO;
-        } else if (fadiga > 100) {
+        }
+        else if (fadiga > 100) {
             this.fadiga = fadiga;
             this.statusSaude = StatusSaude.FERIDO;
         }
+        this.disponibilidade = Disponibilidade.DISPONIVEL;
+    }
 
-        this.relatorioIndividual = new Relatorio();
+    public Disponibilidade getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 
     public Integer getId() {
@@ -93,14 +104,6 @@ public class Astronauta extends Pessoa {
         this.relatorioIndividual = relatorioIndividual;
     }
 
-    public void AddTarefas(Tarefa tarefa){
-        tarefas.add(tarefa);
-    }
-
-    public List<Tarefa> getTarefas() {
-        return tarefas;
-    }
-
     @Override
     public void setNome(String nome) {
         super.setNome(nome);
@@ -121,19 +124,30 @@ public class Astronauta extends Pessoa {
         return super.getDataNascimento();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder msg = new StringBuilder();
-        msg.append("Id: " + getId() + "\n" +
-                        "Astronauta: " + getNome() + "\n" +
-                        "Data de nascimento: " + getDataNascimento() + "\n" +
-                        "Status de saude: " + getStatusSaude() + "\n" +
-                        "Fadiga: " + getFadiga() + "\n" +
-                        "Nivel de experiencia: " + getNivelExperiencia() + "\n" +
-                        "Especialidade: " + getEspecialidade() + "\n" +
-                        "Relatorio: " + getRelatorioIndividual()
-        );
-        return msg.toString();
+    //Ações da lista
+    public List<Tarefa> getTarefas() {
+        return tarefas;
     }
 
+    public void AddTarefas(Tarefa tarefa){
+        for (Tarefa leitor: tarefas){
+            if (leitor.getNomeTarefa().equals(tarefa.getNomeTarefa())){
+                throw new IllegalArgumentException("Tarefa existente");
+            }
+        }
+        tarefas.add(tarefa);
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder()
+                .append("Id: ").append(getId()).append("\n")
+                .append("Astronauta: ").append(getNome()).append("\n")
+                .append("Data de nascimento: ").append(getDataNascimento()).append("\n")
+                .append("Status de saude: ").append(getStatusSaude()).append("\n")
+                .append("Fadiga: ").append(getFadiga()).append("\n")
+                .append("Nivel de experiencia: ").append(getNivelExperiencia()).append("\n")
+                .append("Especialidade: ").append(getEspecialidade()).append("\n\n")
+                .toString();
+    }
 }

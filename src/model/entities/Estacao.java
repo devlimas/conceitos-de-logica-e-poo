@@ -1,11 +1,13 @@
 package model.entities;
 
+import model.exceptions.IdExistente;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Estacao {
     private String nomeDaEstacao;
-    private List<Astronauta> astronautasDisponiveis = new ArrayList<>();
+    private List<Astronauta> astronautas = new ArrayList<>();
     private List<Nave> naves = new ArrayList<>();
     private List<Missao> missoes = new ArrayList<>();
 
@@ -24,34 +26,65 @@ public class Estacao {
         this.nomeDaEstacao = nomeDaEstacao;
     }
 
-    public void addAstronautaDisponiveis(Astronauta astronauta){
-        astronautasDisponiveis.add(astronauta);
+    public void setAstronautas(List<Astronauta> astronautas) {
+        this.astronautas = astronautas;
     }
 
-    public void addNaves(Nave nave){
-        naves.add(nave);
+    public List<Astronauta> getAstronautas() {
+        return astronautas;
     }
 
-    //Essas missoes podem ou nao esta disponiveis, depende do status dela, caso nao estaja, existira uma regra de negocio que nao vai permitir qu as naves aceitem a missao
-    public void addMissao(Missao missao){
-        missoes.add(missao);
+    public void addAstronautas(Astronauta astronauta){
+        for (Astronauta leitor: astronautas){
+            if (astronauta.getId() == leitor.getId()){
+                throw new IdExistente("Esse Id está sendo usado por outro astronauta da estação");
+            }
+        }
+        astronautas.add(astronauta);
     }
 
-    public List<Astronauta> getAstronautasDisponiveis() {
-        return astronautasDisponiveis;
+    public String AstronautasRemove(Astronauta astronauta){
+        astronautas.remove(astronauta);
+        return "Astronauta removido";
     }
 
-    public List<Missao> getMissoes() {
-        return missoes;
+    public void setNaves(List<Nave> naves) {
+        this.naves = naves;
     }
 
     public List<Nave> getNaves() {
         return naves;
     }
 
-    public List<Astronauta> AstronautaConvocado(Astronauta astronauta){
-        astronautasDisponiveis.remove(astronauta);
-        return astronautasDisponiveis;
+    public void addNaves(Nave nave){
+        for (Nave leitor: naves){
+            if (nave.getNomeNave().equals(leitor.getNomeNave())){
+                throw new IllegalArgumentException("O nome desta nave já está registrada");
+            }
+        }
+        naves.add(nave);
+    }
+
+    public List<Missao> getMissoes() {
+        return missoes;
+    }
+
+    public void setMissoes(List<Missao> missoes) {
+        this.missoes = missoes;
+    }
+
+    public void addMissao(Missao missao){
+        for (Missao leitor: missoes){
+            if (leitor.getNomeMissao().equals(missao.getNomeMissao())){
+                throw new IllegalArgumentException("Esta missão já está registrada");
+            }
+        }
+        missoes.add(missao);
+    }
+
+    @Override
+    public String toString() {
+        return "nome Da Estação: " + getNomeDaEstacao() + "\n\n";
     }
 }
 

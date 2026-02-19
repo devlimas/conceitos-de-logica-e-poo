@@ -2,11 +2,11 @@ package model.entities;
 
 import model.enums.StatusMissao;
 import model.enums.StatusNave;
-import model.enums.StatusSaude;
 import model.enums.TamanhoNave;
 import model.exceptions.LimiteTripulantes;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Nave {
@@ -25,13 +25,22 @@ public class Nave {
 
     private List<Astronauta> tripulantes = new ArrayList<>();
 
-    public Nave(Estacao estacao, String nomeNave, TamanhoNave tamanhoNave, StatusNave statusNave,Missao missao, Relatorio relatorioEquipe) {
+    public Nave() {
+    }
+
+    public Nave(Estacao estacao, String nomeNave, TamanhoNave tamanhoNave, StatusNave statusNave) {
         this.estacao = estacao;
         this.nomeNave = nomeNave;
         this.tamanhoNave = tamanhoNave;
         this.statusNave = statusNave;
-        this.missao = new Missao();
-        this.relatorioEquipe = relatorioEquipe;
+    }
+
+    public StatusNave getStatusNave() {
+        return statusNave;
+    }
+
+    public void setStatusNave(StatusNave statusNave) {
+        this.statusNave = statusNave;
     }
 
     public String getNomeNave() {
@@ -47,7 +56,18 @@ public class Nave {
     }
 
     public void setMissao(Missao missao) {
-        this.missao.setStatusMissao(StatusMissao.ATIVA);
+        if (getMissao() != null){
+            throw new InputMismatchException("Esta nave já tem uma missão adicionada");
+        }
+        else if (missao.getStatusMissao() != StatusMissao.PENDENTE) {
+            throw new InputMismatchException("A missão adicionada já está em andamento ou finalizada");
+        }
+        else if (getStatusNave() != StatusNave.DISPONIVEL) {
+            throw new InputMismatchException("Nave indisponivel");
+        }
+
+        missao.setStatusMissao(StatusMissao.ATIVA);
+        this.statusNave = StatusNave.OCUPADA;
         this.missao = missao;
     }
 
@@ -75,25 +95,28 @@ public class Nave {
         this.tamanhoNave = tamanhoNave;
     }
 
+
     public List<Astronauta> getTripulantes() {
         return tripulantes;
     }
 
+    public void setTripulantes(List<Astronauta> tripulantes) {
+        this.tripulantes = tripulantes;
+    }
 
     public void addTripulantes(Astronauta tripulante){
         if (tripulantes.size() >= this.tamanhoNave.getMaxTripulantes()){
             throw new LimiteTripulantes("Limite de tripulantes atingidos");
         }
-        estacao.AstronautaConvocado(tripulante);
         tripulantes.add(tripulante);
     }
 
-    public String alaMedica(Astronauta tripulante){
-        tripulante.setFadiga(0);
-        tripulante.setStatusSaude(StatusSaude.SAUDAVEL);
-
-        return "Tripulante:" + tripulante.getNome() + "\n" +
-                "Saúde:" + tripulante.getStatusSaude() + "\n" +
-                "Fadiga:" + tripulante.getFadiga();
+    @Override
+    public String toString() {
+        return "Estação de origem: " + estacao.getNomeDaEstacao() + "\n" +
+                "Nome da nave: " + getNomeNave() + "\n" +
+                "Tamanho da nave: " + getTamanhoNave() + "\n" +
+                "Status da nave: " + getStatusNave() + "\n" +
+                "Missão da nave: " + getMissao().getNomeMissao() + "\n";
     }
 }

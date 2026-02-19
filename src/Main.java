@@ -1,95 +1,456 @@
 import model.entities.*;
 import model.enums.*;
+import model.queries.QueryAstronauta;
+import model.queries.QueryEstacao;
+import model.queries.QueryMissao;
+import model.queries.QueryNave;
+import model.services.ServiceAlaMedica;
+import model.services.ServiceConvocacao;
+import model.services.ServiceTarefa;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args){
 
-        //Adição da estação-mãe
-        Estacao estacao = new Estacao("Nimb-64");
+        // ==============================
+        // Criando Estação
+        // ==============================
 
-        //Astronautas
-        Astronauta astronauta0 = new Astronauta("Luiz Piolho", LocalDate.of(2002,11,11), 8, Especialidade.PILOTO, NivelExperiencia.SENIOR, 46, new Relatorio());
+        Estacao estacaoA = new Estacao("Estação Orbital Alpha");
+        Estacao estacaoB = new Estacao("Estação Orbital Beta");
 
-        Astronauta astronauta1 = new Astronauta("Yuri Prado", LocalDate.of(2003,10,1), 19, Especialidade.ENGENHEIRO, NivelExperiencia.PLENO, 79, new Relatorio());
+        // ==============================
+        // Criando Astronautas
+        // ==============================
 
-        Astronauta astronauta2 = new Astronauta("Alice Ferro", LocalDate.of(2001,3,6), 12, Especialidade.ENGENHEIRO, NivelExperiencia.PLENO, 0, new Relatorio());
+        Astronauta a1 = new Astronauta(
+                "Carlos",
+                LocalDate.of(1990, 5, 10),
+                1,
+                Especialidade.ENGENHEIRO,
+                NivelExperiencia.PLENO,
+                10
+        );
 
-        Astronauta astronauta3 = new Astronauta("Afolso Texeira", LocalDate.of(2005,1,8), 9, Especialidade.MEDICO, NivelExperiencia.SENIOR, 25, new Relatorio());
+        Astronauta a2 = new Astronauta(
+                "Fernanda",
+                LocalDate.of(1985, 3, 22),
+                2,
+                Especialidade.MEDICO,
+                NivelExperiencia.SENIOR,
+                20
+        );
 
-        Astronauta astronauta4 = new Astronauta("Mario Paulo", LocalDate.of(2003,4,12), 1, Especialidade.ENGENHEIRO, NivelExperiencia.SENIOR, 100, new Relatorio());
+        Astronauta a3 = new Astronauta(
+                "Marcos",
+                LocalDate.of(1988, 11, 15),
+                3,
+                Especialidade.PILOTO,
+                NivelExperiencia.SENIOR,
+                15
+        );
 
-        Astronauta astronauta5 = new Astronauta("Livia Rocha", LocalDate.of(2002,9,21), 3, Especialidade.ENGENHEIRO, NivelExperiencia.JUNIOR, 120, new Relatorio());
+        Astronauta a4 = new Astronauta(
+                "Juliana",
+                LocalDate.of(1995, 7, 30),
+                4,
+                Especialidade.MEDICO,
+                NivelExperiencia.JUNIOR,
+                76
+        );
 
-        Astronauta astronauta6 = new Astronauta("Pedro Texeira", LocalDate.of(2005,1,8), 35, Especialidade.MEDICO, NivelExperiencia.JUNIOR, 0, new Relatorio());
+        Astronauta a5 = new Astronauta(
+                "Roberto",
+                LocalDate.of(1982, 1, 12),
+                5,
+                Especialidade.PILOTO,
+                NivelExperiencia.JUNIOR,
+                25
+        );
 
-        Astronauta astronauta7 = new Astronauta("Lucas Peixes", LocalDate.of(2000,7,2), 75, Especialidade.ZELADOR, NivelExperiencia.JUNIOR, 23, new Relatorio());
+        Astronauta a6 = new Astronauta(
+                "Beatriz",
+                LocalDate.of(1992, 9, 05),
+                6,
+                Especialidade.ENGENHEIRO,
+                NivelExperiencia.JUNIOR,
+                12
+        );
 
-        //Astronauta menor de idade
-        //Astronauta astronauta8 = new Astronauta("Lucas Peixes", LocalDate.of(2016,7,2), 99, Especialidade.PILOTO, NivelExperiencia.SENIOR, 1, new Relatorio());
+        Astronauta a7 = new Astronauta(
+                "André",
+                LocalDate.of(1987, 4, 18),
+                7,
+                Especialidade.MEDICO,
+                NivelExperiencia.SENIOR,
+                18
+        );
 
-        //Adicionando os astronautas a estação-mãe
-        estacao.addAstronautaDisponiveis(astronauta0);
-        estacao.addAstronautaDisponiveis(astronauta1);
-        estacao.addAstronautaDisponiveis(astronauta2);
-        estacao.addAstronautaDisponiveis(astronauta3);
-        estacao.addAstronautaDisponiveis(astronauta4);
-        estacao.addAstronautaDisponiveis(astronauta5);
-        estacao.addAstronautaDisponiveis(astronauta6);
-        estacao.addAstronautaDisponiveis(astronauta7);
+        Astronauta a8 = new Astronauta(
+                "Camila",
+                LocalDate.of(1998, 12, 02),
+                8,
+                Especialidade.PILOTO,
+                NivelExperiencia.JUNIOR,
+                3
+        );
 
-        //Nave e sua estação de origem
-        Nave nave0 = new Nave(estacao, "Apolo-11", TamanhoNave.M, StatusNave.DISPONIVEL, new Missao(), new Relatorio());
+        Astronauta a9 = new Astronauta(
+                "Thiago",
+                LocalDate.of(1991, 6, 25),
+                9,
+                Especialidade.ENGENHEIRO,
+                NivelExperiencia.PLENO,
+                11
+        );
 
-        nave0.addTripulantes(astronauta0);
-        nave0.addTripulantes(astronauta1);
-        nave0.addTripulantes(astronauta2);
-        nave0.addTripulantes(astronauta3);
-        nave0.addTripulantes(astronauta4);
-        nave0.addTripulantes(astronauta5);
+        Astronauta a10 = new Astronauta(
+                "Larissa",
+                LocalDate.of(1984, 8, 14),
+                10,
+                Especialidade.MEDICO,
+                NivelExperiencia.SENIOR,
+                22
+        );
 
-        //Limite de tripulantes atingido, limite baseado em enum
-        //nave0.addTripulantes(astronauta6);
+        Astronauta a11 = new Astronauta(
+                "Ricardo",
+                LocalDate.of(1980, 2, 28),
+                11,
+                Especialidade.PILOTO,
+                NivelExperiencia.JUNIOR,
+                30
+        );
 
-        Missao missao0 = new Missao("Visita a Lua", StatusMissao.PENDENTE, 3, new Relatorio());
+        Astronauta a12 = new Astronauta(
+                "Sofia",
+                LocalDate.of(1996, 10, 10),
+                12,
+                Especialidade.ENGENHEIRO,
+                NivelExperiencia.JUNIOR,
+                4
+        );
 
-        //Limite de valor da prioridade ultrapassado
-        //Missao missao1 = new Missao("Visita a Marte", StatusMissao.PENDENTE, 733, new Relatorio());
+        Astronauta a13 = new Astronauta(
+                "Gabriel",
+                LocalDate.of(1989, 3, 07),
+                13,
+                Especialidade.CIENTISTA,
+                NivelExperiencia.PLENO,
+                9
+        );
 
-        //Adicionando a nave e missão na lista da estação-mãe
-        estacao.addNaves(nave0);
-        estacao.addMissao(missao0);
+        Astronauta a14 = new Astronauta(
+                "Helena",
+                LocalDate.of(1993, 5, 19),
+                14,
+                Especialidade.MEDICO,
+                NivelExperiencia.PLENO,
+                48
+        );
 
-        nave0.setMissao(missao0);
+        Astronauta a15 = new Astronauta(
+                "Bruno",
+                LocalDate.of(1986, 11, 30),
+                15,
+                Especialidade.ENGENHEIRO,
+                NivelExperiencia.SENIOR,
+                116
+        );
 
-        //Nova tarefa sendo adicionada na lista da missão pendente
-        Tarefa tarefa0 = new Tarefa("Ajudar feridos", astronauta3, Especialidade.MEDICO, NivelExperiencia.SENIOR, false);
+        /*
+        //Menor de idade para testes
+        Astronauta a16 = new Astronauta(
+                "Zaun",
+                LocalDate.of(2018, 11, 30),
+                16,
+                Especialidade.ENGENHEIRO,
+                NivelExperiencia.SENIOR,
+                19
+        );
+         */
 
-        //Erro no nivel de experiência
-        //Tarefa tarefa1 = new Tarefa("Limpar a nave", astronauta7, Especialidade.ZELADOR, NivelExperiencia.SENIOR, false);
+        //Mesmo id na mesma estação
+        Astronauta a17 = new Astronauta(
+                "Ruth",
+                LocalDate.of(1996, 11, 30),
+                6,
+                Especialidade.PILOTO,
+                NivelExperiencia.SENIOR,
+                104
+        );
 
-        //Astronauta exausto
-        //Tarefa tarefa2 = new Tarefa("Ajudar feridos", astronauta1, Especialidade.ENGENHEIRO, NivelExperiencia.PLENO, false);
+        // ==============================
+        // Adicionando na estação
+        // ==============================
 
-        missao0.addTarefa(tarefa0);
-        //missao0.addTarefa(tarefa1);
-        //missao0.addTarefa(tarefa2);
+        estacaoA.addAstronautas(a1);
+        estacaoA.addAstronautas(a2);
+        estacaoA.addAstronautas(a3);
+        estacaoA.addAstronautas(a4);
+        estacaoA.addAstronautas(a5);
+        estacaoA.addAstronautas(a6);
+        estacaoA.addAstronautas(a7);
+        estacaoA.addAstronautas(a8);
+        estacaoA.addAstronautas(a9);
+        estacaoA.addAstronautas(a10);
+        estacaoA.addAstronautas(a11);
+        estacaoA.addAstronautas(a12);
+        estacaoA.addAstronautas(a13);
+        estacaoA.addAstronautas(a14);
+        estacaoA.addAstronautas(a15);
 
-        System.out.println(astronauta3.toString());
+        //estacaoA.addAstronautas(a16);
+        //estacaoA.addAstronautas(a17);
 
-        System.out.println();
-        System.out.println(tarefa0.executarTarefa(tarefa0));
+        // ==============================
+        // Criando Nave
+        // ==============================
+        Nave nave1 = new Nave(
+                estacaoA,
+                "Apollo-11",
+                TamanhoNave.M,
+                StatusNave.DISPONIVEL
+        );
 
-        System.out.println();
-        System.out.println(astronauta3.toString());
+        Nave nave2 = new Nave(
+                estacaoA,
+                "Apollo-X",
+                TamanhoNave.P,
+                StatusNave.DISPONIVEL
+        );
 
-        System.out.println();
-        System.out.println(nave0.alaMedica(astronauta3));
+        Nave nave3 = new Nave(
+                estacaoA,
+                "Apollo-Y",
+                TamanhoNave.P,
+                StatusNave.AVARIADA
+        );
 
-        System.out.println(astronauta3.getTarefas());
+        Nave nave4 = new Nave(
+                estacaoA,
+                "Apollo-Z",
+                TamanhoNave.M,
+                StatusNave.OCUPADA
+        );
+
+        Nave nave5 = new Nave(
+                estacaoA,
+                "Apollo-00",
+                TamanhoNave.G,
+                StatusNave.AVARIADA
+        );
+
+        estacaoA.addNaves(nave1);
+        estacaoA.addNaves(nave2);
+        estacaoA.addNaves(nave3);
+        estacaoA.addNaves(nave4);
+        estacaoA.addNaves(nave5);
+
+        // ==============================
+        // Criando Missão
+        // ==============================
+
+        Missao m1 = new Missao(
+                "Missão Marte",
+                StatusMissao.PENDENTE,
+                2
+        );
+
+        Missao m2 = new Missao(
+                "Exploração Lunar",
+                StatusMissao.PENDENTE,
+                1
+        );
+
+        Missao m3 = new Missao(
+                "Resgate em Vênus",
+                StatusMissao.FALHA,
+                3
+        );
+
+        Missao m4 = new Missao(
+                "Sonda de Júpiter",
+                StatusMissao.ATIVA,
+                3
+        );
+
+        Missao m5 = new Missao(
+                "Colonização de Europa",
+                StatusMissao.CONCLUIDA,
+                1
+        );
+
+        //Missão acima da prioridade (0 a 3)
+        /*
+        Missao m6 = new Missao(
+                "Invasão a Zeta",
+                StatusMissao.CONCLUIDA,8
+        );
+        */
+
+        estacaoA.addMissao(m1);
+        estacaoA.addMissao(m2);
+        estacaoA.addMissao(m3);
+        estacaoA.addMissao(m4);
+        estacaoA.addMissao(m5);
+
+        //Missão já está registrada
+        //estacaoA.addMissao(m1);
+
+        nave1.setMissao(m1);
+
+        //Nave ocupada
+        //nave4.setMissao(m2);
+
+        //Nave avariada, não pode pegar missão
+        //nave3.setMissao(m2);
+
+        //Nave tentando ativar uma missão em andamento
+        //nave2.setMissao(m1);
+
+
+        // ==============================
+        // Criando Tarefas
+        // ==============================
+
+        Tarefa t1 = new Tarefa(
+                "Reparar Painel Solar",
+                Especialidade.ENGENHEIRO,
+                NivelExperiencia.PLENO,
+                false
+        );
+
+        Tarefa t2 = new Tarefa(
+                "Análise Médica da Tripulação",
+                Especialidade.MEDICO,
+                NivelExperiencia.PLENO,
+                false
+        );
+
+        Tarefa t3 = new Tarefa(
+                "Assumir a pilotagem",
+                Especialidade.PILOTO,
+                NivelExperiencia.PLENO,
+                false
+        );
+
+        Tarefa t4 = new Tarefa(
+                "Ajudar os feridos",
+                Especialidade.MEDICO,
+                NivelExperiencia.JUNIOR,
+                false
+        );
+
+        m1.addTarefa(t1);
+        m1.addTarefa(t2);
+        m1.addTarefa(t3);
+        m1.addTarefa(t4);
+
+        // ==============================
+        // Convocando astronautas
+        // ==============================
+        ServiceConvocacao convocacao = new ServiceConvocacao();
+
+        convocacao.Convocar(nave1, a1);
+        convocacao.Convocar(nave1, a2);
+        convocacao.Convocar(nave1, a3);
+        convocacao.Convocar(nave1, a4);
+        convocacao.Convocar(nave1, a5);
+        convocacao.Convocar(nave1, a6);
+
+
+        System.out.println("Tripulantes convocados com sucesso.\n");
+
+        // ==============================
+        // Atribuindo tarefas
+        // ==============================
+        t1.setAstronautaResponsavel(a1, t1);
+        t2.setAstronautaResponsavel(a2, t2);
+        t3.setAstronautaResponsavel(a3, t3);
+        t4.setAstronautaResponsavel(a7, t4);
+
+        //Nivel de fadiga alta
+        //t4.setAstronautaResponsavel(a4, t4);
+
+        //Nivel de experiencia baixo do astronauta
+        //t3.setAstronautaResponsavel(a5, t3);
+
+        //Astronauta debilitado, fadiga alta e ferido
+        //t2.setAstronautaResponsavel(a17, t3);
+
+        // ==============================
+        // QueryDaTripulação
+        // ==============================
+        QueryNave ListaTripulantes = new QueryNave();
+        QueryMissao ListaTarefas = new QueryMissao();
+        QueryEstacao ListaEstacao = new QueryEstacao();
+        QueryAstronauta ListaTarefasIndividual = new QueryAstronauta();
+
+        System.out.println("Lista da Tripulação");
+        System.out.println(ListaTripulantes.BuscarTodosAstronautas(nave1));
+        // ==============================
+        // Executando tarefas
+        // ==============================
+        ServiceTarefa serviceTarefa = new ServiceTarefa();
+
+        System.out.println(serviceTarefa.executarTarefa(t1) + "\n");
+        System.out.println(serviceTarefa.executarTarefa(t2) + "\n");
+        System.out.println(serviceTarefa.executarTarefa(t3) + "\n");
+        System.out.println(serviceTarefa.executarTarefa(t4) + "\n");
+
+        System.out.println("\nTarefas executadas.\n");
+
+        // ==============================
+        // QueryDaTripulaçãoApósTarefas
+        // ==============================
+        System.out.println("Lista da Tripulação Após Tarefas");
+        System.out.println(ListaTripulantes.BuscarTodosAstronautas(nave1));
+
+        // ==============================
+        // AlaMedica
+        // ==============================
+        ServiceAlaMedica alaMedica = new ServiceAlaMedica();
+
+        alaMedica.recuperação(a1);
+        alaMedica.recuperação(a2);
+        alaMedica.recuperação(a3);
+        alaMedica.recuperação(a7);
+
+        // ==============================
+        // QueryDaTripulaçãoApósAlaMédica
+        // ==============================
+        System.out.println("Lista da Tripulação Após Ala Médica");
+        System.out.println(ListaTripulantes.BuscarTodosAstronautas(nave1));
+
+        // ==============================
+        // Verificando estado final
+        // ==============================
+
+        System.out.println("=== MISSÃO ===\n");
+        System.out.println(m1);
+
+        System.out.println("=== NAVE ===\n");
+        System.out.println(nave1);
+
+        // ==============================
+        // Querys
+        // ==============================
+
+        //Tarefas da Missão
+        System.out.println(ListaTarefas.BuscarTarefas(m1));
+
+        //Listas das Missões da Estação
+        System.out.println(ListaEstacao.BucarMissoes(estacaoA));
+
+        //Listas dos Astronautas da Estação
+        System.out.println(ListaEstacao.BuscarAstronautas(estacaoA));
+
+        //Lista das Naves da Estação
+        System.out.println(ListaEstacao.BuscarNave(estacaoA));
+
+        System.out.println(ListaTarefasIndividual.TodasTarefas(a1));
     }
 
 }

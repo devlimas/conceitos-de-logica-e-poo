@@ -18,26 +18,41 @@ public class Tarefa {
     private NivelExperiencia nivelDaTarefa;
     private Boolean isConcluida;
 
-    public Tarefa(String nomeTarefa, Astronauta astronautaResponsavel, Especialidade especialidadeNecessaria, NivelExperiencia nivelDaTarefa, Boolean isConcluida) {
+    private Relatorio RelatorioTarefa;
+
+    public Tarefa() {
+    }
+
+    public Tarefa(String nomeTarefa, Especialidade especialidadeNecessaria, NivelExperiencia nivelDaTarefa, Boolean isConcluida) {
         this.nomeTarefa = nomeTarefa;
-
-        if (astronautaResponsavel.getFadiga() > 65 || astronautaResponsavel.getStatusSaude().equals(StatusSaude.FERIDO)) {
-            throw new AstronautaTarefa("Astronauta em recuperação");
-        }
-        this.astronautaResponsavel = astronautaResponsavel;
-
-        if (!especialidadeNecessaria.equals(astronautaResponsavel.getEspecialidade())){
-            throw new AstronautaTarefa("A especialidade deste astronauta é invalida");
-        }
         this.especialidadeNecessaria = especialidadeNecessaria;
-
-        if (!nivelDaTarefa.equals(astronautaResponsavel.getNivelExperiencia())){
-            throw new AstronautaTarefa("Nivel de experiencia nao suficiente");
-        }
         this.nivelDaTarefa = nivelDaTarefa;
-
         this.tempoTarefa = aleatorio.nextInt(60) + 1;
         this.isConcluida = isConcluida;
+    }
+
+    public void setAstronautaResponsavel(Astronauta astronautaResponsavel) {
+        this.astronautaResponsavel = astronautaResponsavel;
+    }
+
+    public Especialidade getEspecialidadeNecessaria() {
+        return especialidadeNecessaria;
+    }
+
+    public void setEspecialidadeNecessaria(Especialidade especialidadeNecessaria) {
+        this.especialidadeNecessaria = especialidadeNecessaria;
+    }
+
+    public void setTempoTarefa(Integer tempoTarefa) {
+        this.tempoTarefa = tempoTarefa;
+    }
+
+    public Relatorio getRelatorioTarefa() {
+        return RelatorioTarefa;
+    }
+
+    public void setRelatorioTarefa(Relatorio relatorioTarefa) {
+        RelatorioTarefa = relatorioTarefa;
     }
 
     public String getNomeTarefa() {
@@ -56,45 +71,44 @@ public class Tarefa {
         return nivelDaTarefa;
     }
 
-    public void setNivelDaTarefa(NivelExperiencia nivelDaTarefa) {
-        this.nivelDaTarefa = nivelDaTarefa;
-    }
+    public void setNivelDaTarefa(NivelExperiencia nivelDaTarefa) {this.nivelDaTarefa = nivelDaTarefa;}
 
     public Astronauta getAstronautaResponsavel() {
         return astronautaResponsavel;
     }
 
-    public void setAstronautaResponsavel(Astronauta astronautaResponsavel) {
+    public void setAstronautaResponsavel(Astronauta astronautaResponsavel, Tarefa tarefa) {
+        if (astronautaResponsavel.getFadiga() > 65 || astronautaResponsavel.getStatusSaude().equals(StatusSaude.FERIDO)) {
+            throw new AstronautaTarefa("Astronauta em recuperação");
+        }
+
+        if (!especialidadeNecessaria.equals(astronautaResponsavel.getEspecialidade())){
+            throw new AstronautaTarefa("A especialidade deste astronauta é invalida");
+        }
+
+        if (!astronautaResponsavel.getNivelExperiencia().CargoSuperior(nivelDaTarefa)) {
+            throw new AstronautaTarefa("Nivel de experiencia nao suficiente");
+        }
         this.astronautaResponsavel = astronautaResponsavel;
+        astronautaResponsavel.AddTarefas(tarefa);
     }
 
     public Boolean getConcluida() {
         return isConcluida;
     }
 
-    public Boolean executarTarefa(Tarefa tarefa){
-        astronautaResponsavel.AddTarefas(tarefa);
-        int fadiga = 0;
-        if (getTempoTarefa() <= 20){
-            fadiga = 20;
-            getAstronautaResponsavel().setFadiga(getAstronautaResponsavel().getFadiga() + fadiga);
-        } else if (getTempoTarefa() > 20 && getTempoTarefa() <= 40) {
-            fadiga = 40;
-            getAstronautaResponsavel().setFadiga(getAstronautaResponsavel().getFadiga() + fadiga);
-        } else {
-            fadiga = 60;
-            getAstronautaResponsavel().setFadiga(getAstronautaResponsavel().getFadiga() + fadiga);
-        }
+    public Boolean setConcluida(Boolean concluida) {
+        isConcluida = concluida;
+        return concluida;
+    }
 
-        if (getAstronautaResponsavel().getFadiga() <= 45){
-            getAstronautaResponsavel().setStatusSaude(StatusSaude.SAUDAVEL);
-        } else if (fadiga > 45 && fadiga <= 100) {
-            getAstronautaResponsavel().setStatusSaude(StatusSaude.CANSADO);
-        } else if (fadiga > 100) {
-            getAstronautaResponsavel().setStatusSaude(StatusSaude.FERIDO);
-        }
-
-        System.out.println("Tarefa concluida");
-        return this.isConcluida = true;
+    @Override
+    public String toString() {
+        return "Nome da tarefa: " + getNomeTarefa() + "\n" +
+                "Astronauta responsavel: " + getAstronautaResponsavel().getNome() + "\n" +
+                "Especialidade necessaria: " + getEspecialidadeNecessaria() + "\n" +
+                "Tempo da tarefa: " + getTempoTarefa() + " Minutos" + "\n" +
+                "Nivel da tarefa: " + getNivelDaTarefa() + "\n" +
+                "Conclusão: " + getConcluida() + "\n";
     }
 }
