@@ -141,13 +141,14 @@ public class Astronauta extends Pessoa {
     @Override
     public String toString() {
         return new StringBuilder()
+                .append("\n")
                 .append("Id: ").append(getId()).append("\n")
                 .append("Astronauta: ").append(getNome()).append("\n")
                 .append("Data de nascimento: ").append(getDataNascimento()).append("\n")
                 .append("Status de saude: ").append(getStatusSaude()).append("\n")
                 .append("Fadiga: ").append(getFadiga()).append("\n")
                 .append("Nivel de experiencia: ").append(getNivelExperiencia()).append("\n")
-                .append("Especialidade: ").append(getEspecialidade()).append("\n\n")
+                .append("Especialidade: ").append(getEspecialidade()).append("\n")
                 .toString();
     }
 }

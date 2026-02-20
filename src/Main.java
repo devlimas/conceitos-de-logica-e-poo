@@ -389,7 +389,7 @@ public class Main {
         QueryAstronauta ListaTarefasIndividual = new QueryAstronauta();
 
         System.out.println("Lista da Tripulação");
-        System.out.println(ListaTripulantes.BuscarTodosAstronautas(nave1));
+        System.out.println(ListaTripulantes.TodaTripulacao(nave1));
         // ==============================
         // Executando tarefas
         // ==============================
@@ -406,7 +406,7 @@ public class Main {
         // QueryDaTripulaçãoApósTarefas
         // ==============================
         System.out.println("Lista da Tripulação Após Tarefas");
-        System.out.println(ListaTripulantes.BuscarTodosAstronautas(nave1));
+        System.out.println(ListaTripulantes.TodaTripulacao(nave1));
 
         // ==============================
         // AlaMedica
@@ -422,7 +422,7 @@ public class Main {
         // QueryDaTripulaçãoApósAlaMédica
         // ==============================
         System.out.println("Lista da Tripulação Após Ala Médica");
-        System.out.println(ListaTripulantes.BuscarTodosAstronautas(nave1));
+        System.out.println(ListaTripulantes.TodaTripulacao(nave1));
 
         // ==============================
         // Verificando estado final
@@ -434,23 +434,75 @@ public class Main {
         System.out.println("=== NAVE ===\n");
         System.out.println(nave1);
 
+        System.out.println("-----------------------------------------------------------------------------------------");
         // ==============================
         // Querys
         // ==============================
-
+        //--------------------------------------------------------------
         //Tarefas da Missão
-        System.out.println(ListaTarefas.BuscarTarefas(m1));
+        System.out.println("Tarefas da Missão");
+
+        System.out.println(ListaTarefas.TodasTarefasDaMissao(m1));
+
+        System.out.println();
+
+        System.out.println(ListaTarefas.BuscarTarefaPorNome(m1, "Reparar Painel Solar"));
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------------------");
+        //--------------------------------------------------------------
 
         //Listas das Missões da Estação
-        System.out.println(ListaEstacao.BucarMissoes(estacaoA));
+        System.out.println("Listas da estação:");
 
+        System.out.println("Missoes:");
+        System.out.println(ListaEstacao.TodasMissoes(estacaoA));
+
+        System.out.println();
+
+        System.out.println(ListaEstacao.BuscarMissaoPorNome(estacaoA, "Missão Marte"));
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------------------");
         //Listas dos Astronautas da Estação
-        System.out.println(ListaEstacao.BuscarAstronautas(estacaoA));
+        System.out.println("Astronautas:");
+        System.out.println(ListaEstacao.TodosAstronautasEstacao(estacaoA));
 
+        System.out.println();
+
+        System.out.println(ListaEstacao.BuscarAstronautaEstacaoPorId(estacaoA, 1));
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------------------");
         //Lista das Naves da Estação
-        System.out.println(ListaEstacao.BuscarNave(estacaoA));
+        System.out.println("Naves:");
+        System.out.println(ListaEstacao.TodasEstacaoNaves(estacaoA));
 
-        System.out.println(ListaTarefasIndividual.TodasTarefas(a1));
+        System.out.println();
+
+        System.out.println(ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-11"));
+        System.out.println(ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-00"));
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------------------");
+        //--------------------------------------------------------------
+
+        System.out.println("Tarefas individuais do Astronauta:");
+
+        System.out.println(ListaTarefasIndividual.TodasTarefasIndividuais(a1));
+
+        System.out.println();
+
+        System.out.println(ListaTarefasIndividual.BuscarTarefaIndividual(a1, "Reparar Painel Solar"));
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------------------");
+        //--------------------------------------------------------------
+        System.out.println("Tripulação da nave:");
+
+        System.out.println(ListaTripulantes.TodaTripulacao(nave1));
+
+        System.out.println();
+
+        System.out.println(ListaTripulantes.TripulantePorId(nave1, 2));
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------------------");
+        //--------------------------------------------------------------
     }
 
 }
