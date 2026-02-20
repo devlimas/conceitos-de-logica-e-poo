@@ -104,7 +104,7 @@ public class Tarefa {
 
     @Override
     public String toString() {
-        return "Nome da tarefa: " + getNomeTarefa() + "\n" +
+        return "\n" + "Nome da tarefa: " + getNomeTarefa() + "\n" +
                 "Astronauta responsavel: " + getAstronautaResponsavel().getNome() + "\n" +
                 "Especialidade necessaria: " + getEspecialidadeNecessaria() + "\n" +
                 "Tempo da tarefa: " + getTempoTarefa() + " Minutos" + "\n" +

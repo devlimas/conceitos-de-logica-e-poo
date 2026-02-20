@@ -113,10 +113,12 @@ public class Nave {
 
     @Override
     public String toString() {
-        return "Estação de origem: " + estacao.getNomeDaEstacao() + "\n" +
+        String nomeDaMissao = (missao != null) ? missao.getNomeMissao() : "Nenhuma missão atribuída";
+
+        return "\n" + "Estação de origem: " + estacao.getNomeDaEstacao() + "\n" +
                 "Nome da nave: " + getNomeNave() + "\n" +
                 "Tamanho da nave: " + getTamanhoNave() + "\n" +
                 "Status da nave: " + getStatusNave() + "\n" +
-                "Missão da nave: " + getMissao().getNomeMissao() + "\n";
+                "Missão da nave: " + nomeDaMissao + "\n";
     }
 }

@@ -1,30 +1,28 @@
 package model.queries;
 
+import model.entities.Astronauta;
 import model.entities.Missao;
+import model.entities.Nave;
 import model.entities.Tarefa;
+
+import java.util.List;
 
 public class QueryMissao {
 
     public QueryMissao() {
     }
 
-    public String BuscarTarefas(Missao missao) {
-        for (Tarefa leitor: missao.getTarefas()){
-            System.out.println(
-                "Nome da tarefa: " + leitor.getNomeTarefa() + "\n" +
-                "Conclusão: " + leitor.getConcluida() + "\n"
-            );
-        }
-        return "Fim da lista de tarefas da missão";
+    public List<Tarefa> TodasTarefasDaMissao(Missao missao) {
+        return missao.getTarefas();
     }
 
-    public String BuscarTarefaPorNome(Missao missao ,String nomeTarefa) {
-        for (Tarefa leitor: missao.getTarefas()){
+    public Tarefa BuscarTarefaPorNome(Missao missao, String nomeTarefa) {
+        for (Tarefa leitor : missao.getTarefas()) {
             if (leitor.getNomeTarefa().equals(nomeTarefa)){
-                return "Nome da tarefa: " + leitor.getNomeTarefa() + "\n" +
-                        "Conclusão: " + leitor.getConcluida() + "\n";
+                return leitor;
             }
         }
-        return "Tarefa não encontrada";
+
+        return null;
     }
 }
