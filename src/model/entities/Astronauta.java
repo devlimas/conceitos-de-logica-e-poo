@@ -4,6 +4,7 @@ import model.enums.Disponibilidade;
 import model.enums.Especialidade;
 import model.enums.NivelExperiencia;
 import model.enums.StatusSaude;
+import model.exceptions.Existente;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -132,7 +133,7 @@ public class Astronauta extends Pessoa {
     public void AddTarefas(Tarefa tarefa){
         for (Tarefa leitor: tarefas){
             if (leitor.getNomeTarefa().equals(tarefa.getNomeTarefa())){
-                throw new IllegalArgumentException("Tarefa existente");
+                throw new Existente("Essa tarefa já existe nos registros");
             }
         }
         tarefas.add(tarefa);

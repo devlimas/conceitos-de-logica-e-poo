@@ -3,7 +3,7 @@ package model.entities;
 import model.enums.Especialidade;
 import model.enums.NivelExperiencia;
 import model.enums.StatusSaude;
-import model.exceptions.AstronautaTarefa;
+import model.exceptions.AstronautaStatus;
 
 import java.util.Random;
 
@@ -79,15 +79,15 @@ public class Tarefa {
 
     public void setAstronautaResponsavel(Astronauta astronautaResponsavel, Tarefa tarefa) {
         if (astronautaResponsavel.getFadiga() > 65 || astronautaResponsavel.getStatusSaude().equals(StatusSaude.FERIDO)) {
-            throw new AstronautaTarefa("Astronauta em recuperação");
+            throw new AstronautaStatus("Astronauta em recuperação");
         }
 
         if (!especialidadeNecessaria.equals(astronautaResponsavel.getEspecialidade())){
-            throw new AstronautaTarefa("A especialidade deste astronauta é invalida");
+            throw new AstronautaStatus("A especialidade deste astronauta é invalida");
         }
 
         if (!astronautaResponsavel.getNivelExperiencia().CargoSuperior(nivelDaTarefa)) {
-            throw new AstronautaTarefa("Nivel de experiencia nao suficiente");
+            throw new AstronautaStatus("Nivel de experiencia nao suficiente");
         }
         this.astronautaResponsavel = astronautaResponsavel;
         astronautaResponsavel.AddTarefas(tarefa);

@@ -14,7 +14,7 @@ public class QueryEstacao {
         return estacao.getAstronautas();
     }
 
-    public Astronauta BuscarAstronautaEstacaoPorId(Estacao estacao, Integer id) {
+    public Astronauta BuscarAstronautaEstacaoPorId(Estacao estacao, int id) {
         for (Astronauta leitor : estacao.getAstronautas()) {
             if (leitor.getId() == id){
                 return leitor;

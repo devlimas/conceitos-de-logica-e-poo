@@ -459,7 +459,11 @@ public class Main {
 
         System.out.println();
 
-        System.out.println(ListaEstacao.BuscarMissaoPorNome(estacaoA, "Missão Marte"));
+        if (ListaEstacao.BuscarMissaoPorNome(estacaoA, "Missão Marte") != null) {
+            System.out.println(ListaEstacao.BuscarMissaoPorNome(estacaoA, "Missão Marte"));
+        } else {
+            System.out.println("Nada encontrado");
+        }
         System.out.println();
         System.out.println("-----------------------------------------------------------------------------------------");
         //Listas dos Astronautas da Estação
@@ -468,7 +472,12 @@ public class Main {
 
         System.out.println();
 
-        System.out.println(ListaEstacao.BuscarAstronautaEstacaoPorId(estacaoA, 1));
+        if (ListaEstacao.BuscarAstronautaEstacaoPorId(estacaoA, 1) != null) {
+            System.out.println(ListaEstacao.BuscarAstronautaEstacaoPorId(estacaoA, 1));
+        } else {
+            System.out.println("Nada encontrado");
+        }
+
         System.out.println();
         System.out.println("-----------------------------------------------------------------------------------------");
         //Lista das Naves da Estação
@@ -477,8 +486,18 @@ public class Main {
 
         System.out.println();
 
-        System.out.println(ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-11"));
-        System.out.println(ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-00"));
+        if (ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-11") != null) {
+            System.out.println(ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-11"));
+        } else {
+            System.out.println("Nada encontrado");
+        }
+
+        if (ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-00") != null) {
+            System.out.println(ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-00"));
+        } else {
+            System.out.println("Nada encontrado");
+        }
+
         System.out.println();
         System.out.println("-----------------------------------------------------------------------------------------");
         //--------------------------------------------------------------
@@ -489,7 +508,11 @@ public class Main {
 
         System.out.println();
 
-        System.out.println(ListaTarefasIndividual.BuscarTarefaIndividual(a1, "Reparar Painel Solar"));
+        if (ListaTarefasIndividual.BuscarTarefaIndividual(a1, "Reparar Painel Solar") != null) {
+            System.out.println(ListaTarefasIndividual.BuscarTarefaIndividual(a1, "Reparar Painel Solar"));
+        } else {
+            System.out.println("Nada encontrado");
+        }
         System.out.println();
         System.out.println("-----------------------------------------------------------------------------------------");
         //--------------------------------------------------------------
@@ -499,7 +522,11 @@ public class Main {
 
         System.out.println();
 
-        System.out.println(ListaTripulantes.TripulantePorId(nave1, 2));
+        if (ListaTripulantes.TripulantePorId(nave1, 2) != null) {
+            System.out.println(ListaTripulantes.TripulantePorId(nave1, 2));
+        } else {
+            System.out.println("Nada encontrado");
+        }
         System.out.println();
         System.out.println("-----------------------------------------------------------------------------------------");
         //--------------------------------------------------------------

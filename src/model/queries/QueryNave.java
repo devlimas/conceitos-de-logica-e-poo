@@ -14,14 +14,13 @@ public class QueryNave {
         return nave.getTripulantes();
     }
 
-    public Astronauta TripulantePorId(Nave nave, Integer id) {
+    public Astronauta TripulantePorId(Nave nave, int id) {
 
         for (Astronauta leitor : nave.getTripulantes()) {
             if (leitor.getId() == id) {
                 return leitor;
             }
         }
-
         return null;
     }
 }

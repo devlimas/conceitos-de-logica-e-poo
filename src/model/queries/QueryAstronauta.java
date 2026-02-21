@@ -1,7 +1,6 @@
 package model.queries;
 
 import model.entities.Astronauta;
-import model.entities.Missao;
 import model.entities.Tarefa;
 
 import java.util.List;

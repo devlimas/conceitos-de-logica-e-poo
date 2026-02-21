@@ -1,6 +1,8 @@
 package model.entities;
 
 import model.enums.StatusMissao;
+import model.exceptions.Existente;
+import model.exceptions.Prioridade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,7 @@ public class Missao {
 
         // Fiz a escolha de fazer a prioridade com int, em vez de enum apenas para mostrar outra maneira de ser feita, por mais que não seja recomendado já que enum brilha aqui
         if(prioridade > 3){
-            throw new IllegalArgumentException("O nivel de prioridade é definido de 1 a 3");
+            throw new Prioridade("O nivel de prioridade é de 1 a 3");
         }
 
         this.prioridade = prioridade;
@@ -71,7 +73,7 @@ public class Missao {
     public void addTarefa(Tarefa tarefa){
         for(Tarefa leitor: tarefas){
             if (leitor.getNomeTarefa().equals(tarefa.getNomeTarefa())){
-                throw new IllegalArgumentException("Tarefa já existe dentro da lista desta missão");
+                throw new Existente("Tarefa já existente dentro da lista da missão");
             }
         }
         tarefas.add(tarefa);
