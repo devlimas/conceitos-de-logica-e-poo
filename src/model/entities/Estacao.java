@@ -1,6 +1,6 @@
 package model.entities;
 
-import model.exceptions.IdExistente;
+import model.exceptions.Existente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +36,8 @@ public class Estacao {
 
     public void addAstronautas(Astronauta astronauta){
         for (Astronauta leitor: astronautas){
-            if (astronauta.getId() == leitor.getId()){
-                throw new IdExistente("Esse Id está sendo usado por outro astronauta da estação");
+            if (astronauta.getId().equals(leitor.getId())){
+                throw new Existente("Esse Id está sendo usado por outro astronauta da estação");
             }
         }
         astronautas.add(astronauta);
@@ -59,7 +59,7 @@ public class Estacao {
     public void addNaves(Nave nave){
         for (Nave leitor: naves){
             if (nave.getNomeNave().equals(leitor.getNomeNave())){
-                throw new IllegalArgumentException("O nome desta nave já está registrada");
+                throw new Existente("Essa nave já está registrada nesta estação");
             }
         }
         naves.add(nave);
@@ -76,7 +76,7 @@ public class Estacao {
     public void addMissao(Missao missao){
         for (Missao leitor: missoes){
             if (leitor.getNomeMissao().equals(missao.getNomeMissao())){
-                throw new IllegalArgumentException("Esta missão já está registrada");
+                throw new Existente("Esta missão já está registrada nesta estação");
             }
         }
         missoes.add(missao);

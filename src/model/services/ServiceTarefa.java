@@ -1,6 +1,5 @@
 package model.services;
 
-import model.entities.Astronauta;
 import model.entities.Tarefa;
 import model.enums.StatusSaude;
 

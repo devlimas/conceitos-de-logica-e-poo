@@ -3,6 +3,7 @@ package model.entities;
 import model.enums.StatusMissao;
 import model.enums.StatusNave;
 import model.enums.TamanhoNave;
+import model.exceptions.Indisponivel;
 import model.exceptions.LimiteTripulantes;
 
 import java.util.ArrayList;
@@ -57,13 +58,13 @@ public class Nave {
 
     public void setMissao(Missao missao) {
         if (getMissao() != null){
-            throw new InputMismatchException("Esta nave já tem uma missão adicionada");
+            throw new Indisponivel("Esta nave já tem uma missão adicionada");
         }
         else if (missao.getStatusMissao() != StatusMissao.PENDENTE) {
-            throw new InputMismatchException("A missão adicionada já está em andamento ou finalizada");
+            throw new Indisponivel("A missão adicionada já está em andamento ou finalizada");
         }
         else if (getStatusNave() != StatusNave.DISPONIVEL) {
-            throw new InputMismatchException("Nave indisponivel");
+            throw new Indisponivel("Nave indisponivel");
         }
 
         missao.setStatusMissao(StatusMissao.ATIVA);
