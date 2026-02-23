@@ -95,7 +95,7 @@ public class Tarefa {
                 ? astronautaResponsavel.getNome()
                 : "Nenhum";
 
-        return "Nome da tarefa: " + getNomeTarefa() + "\n" +
+        return "\n" + "Nome da tarefa: " + getNomeTarefa() + "\n" +
                 "Especialidade necessaria: " + getEspecialidadeNecessaria() + "\n" +
                 "Tempo da tarefa: " + getTempoTarefa() + " Minutos\n" +
                 "Nivel da tarefa: " + getNivelDaTarefa() + "\n" +

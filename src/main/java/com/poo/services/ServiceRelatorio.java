@@ -135,28 +135,4 @@ public class ServiceRelatorio {
         }
         return ( (double) contador / totalGeralTarefas) * 100;
     }
-
-    public double taxaDeNave(Nave nave){
-
-        if (nave.getMissao() == null){
-            System.out.print("A Nave não possui nenhuma missão registradas, quantidade: ");
-            return 0;
-        }
-
-        List<Tarefa> tarefas = nave.getMissao().getTarefas();
-
-        if (tarefas.isEmpty()) {
-            System.out.print("A missão não possui nenhuma tarefa");
-            return 0;
-        }
-
-        int contador = 0;
-
-        for (Tarefa tarefa : tarefas){
-            if (tarefa.getConcluida()){
-                contador++;
-            }
-        }
-        return ((double) contador / tarefas.size()) * 100;
-    }
 }

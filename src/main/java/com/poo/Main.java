@@ -14,229 +14,60 @@ import com.poo.services.ServiceTarefa;
 import java.time.LocalDate;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        // ==============================
-        // Criando Estação
-        // ==============================
-        Estacao estacaoA = new Estacao("Estação Orbital Alpha");
-
-        // ==============================
-        // Criando Astronautas
-        // ==============================
-        Astronauta a1 = new Astronauta(
-                "Carlos", LocalDate.of(1990, 5, 10), 1,
-                Especialidade.ENGENHEIRO, NivelExperiencia.PLENO, 10
-        );
-
-        Astronauta a2 = new Astronauta(
-                "Fernanda", LocalDate.of(1985, 3, 22), 2,
-                Especialidade.MEDICO, NivelExperiencia.SENIOR, 20
-        );
-
-        Astronauta a3 = new Astronauta(
-                "Marcos", LocalDate.of(1988, 11, 15), 3,
-                Especialidade.PILOTO, NivelExperiencia.SENIOR, 15
-        );
-
-        Astronauta a4 = new Astronauta(
-                "Juliana", LocalDate.of(1995, 7, 30), 4,
-                Especialidade.MEDICO, NivelExperiencia.JUNIOR, 64
-        );
-
-        Astronauta a5 = new Astronauta(
-                "Roberto", LocalDate.of(1982, 1, 12), 5,
-                Especialidade.PILOTO, NivelExperiencia.PLENO, 25
-        );
-
-        Astronauta a6 = new Astronauta(
-                "Beatriz", LocalDate.of(1992, 9, 05), 6,
-                Especialidade.ENGENHEIRO, NivelExperiencia.SENIOR, 12
-        );
-
-        Astronauta a7 = new Astronauta(
-                "André", LocalDate.of(1987, 4, 18), 7,
-                Especialidade.CIENTISTA, NivelExperiencia.SENIOR, 18
-        );
-
-        Astronauta a8 = new Astronauta(
-                "Camila", LocalDate.of(1998, 12, 02), 8,
-                Especialidade.ZELADOR, NivelExperiencia.JUNIOR, 3
-        );
-
-        Astronauta a9 = new Astronauta(
-                "Thiago", LocalDate.of(1991, 6, 25), 9,
-                Especialidade.CIENTISTA, NivelExperiencia.PLENO, 11
-        );
-
-        Astronauta a10 = new Astronauta(
-                "Larissa", LocalDate.of(1984, 8, 14), 10,
-                Especialidade.ZELADOR, NivelExperiencia.PLENO, 22
-        );
-
-
-        // ==============================
-        // Adicionando na estação
-        // ==============================
-
-        estacaoA.addAstronautas(a1);
-        estacaoA.addAstronautas(a2);
-        estacaoA.addAstronautas(a3);
-        estacaoA.addAstronautas(a4);
-        estacaoA.addAstronautas(a5);
-        estacaoA.addAstronautas(a6);
-        estacaoA.addAstronautas(a7);
-        estacaoA.addAstronautas(a8);
-        estacaoA.addAstronautas(a9);
-        estacaoA.addAstronautas(a10);
-
-        // ==============================
-        // Criando Nave
-        // ==============================
-        Nave nave1 = new Nave(
-                estacaoA,
-                "Apollo-11",
-                TamanhoNave.G,
-                StatusNave.DISPONIVEL
-        );
-        estacaoA.addNaves(nave1);
-
-
-        // ==============================
-        // Criando Missão
-        // ==============================
-        Missao m1 = new Missao(
-                "Missão Marte",
-                StatusMissao.PENDENTE,
-                2
-        );
-        estacaoA.addMissao(m1);
-
-        // ==============================
-        // Adicionando Missão a nave
-        // ==============================
-        nave1.setMissao(m1);
-
-        // ==============================
-        // Criando Tarefas
-        // ==============================
-        Tarefa t1 = new Tarefa(
-                "Reparar Painel Solar",
-                Especialidade.ENGENHEIRO,
-                NivelExperiencia.PLENO,
-                false
-        );
-
-        Tarefa t2 = new Tarefa(
-                "Análise Médica da Tripulação",
-                Especialidade.MEDICO,
-                NivelExperiencia.SENIOR,
-                false
-        );
-
-        Tarefa t3 = new Tarefa(
-                "Assumir a pilotagem",
-                Especialidade.PILOTO,
-                NivelExperiencia.PLENO,
-                false
-        );
-
-        Tarefa t4 = new Tarefa(
-                "Ajudar os feridos",
-                Especialidade.MEDICO,
-                NivelExperiencia.JUNIOR,
-                false
-        );
-
-        Tarefa t5 = new Tarefa(
-                "Coleta de Amostras de Solo",
-                Especialidade.CIENTISTA,
-                NivelExperiencia.PLENO,
-                false
-        );
-
-        Tarefa t6 = new Tarefa(
-                "Manutenção do Sistema de Oxigênio",
-                Especialidade.ENGENHEIRO,
-                NivelExperiencia.SENIOR,
-                false
-        );
-
-        Tarefa t7 = new Tarefa(
-                "Limpeza dos Dutos de Ventilação",
-                Especialidade.ZELADOR,
-                NivelExperiencia.JUNIOR,
-                false
-        );
-
-        Tarefa t8 = new Tarefa(
-                "Cálculo de Rota Hiperespaço",
-                Especialidade.PILOTO,
-                NivelExperiencia.SENIOR,
-                false
-        );
-
-        Tarefa t9 = new Tarefa(
-                "Sequenciamento Genético Alienígena",
-                Especialidade.CIENTISTA,
-                NivelExperiencia.SENIOR,
-                false
-        );
-
-        Tarefa t10 = new Tarefa(
-                "Gestão de Resíduos Radioativos",
-                Especialidade.ZELADOR,
-                NivelExperiencia.PLENO,
-                false
-        );
-
-        Tarefa t11 = new Tarefa(
-                "Recalibrar Propulsores de Manobra",
-                Especialidade.ENGENHEIRO,
-                NivelExperiencia.PLENO,
-                false
-        );
-
-        Tarefa t12 = new Tarefa(
-                "Substituir Filtros de Sedimentos",
-                Especialidade.ENGENHEIRO,
-                NivelExperiencia.JUNIOR,
-                true
-        );
-
-        Tarefa t13 = new Tarefa(
-                "Reforçar Blindagem Contra Micrometeoritos",
-                Especialidade.ENGENHEIRO,
-                NivelExperiencia.PLENO,
-                false
-        );
-
-        Tarefa t14 = new Tarefa(
-                "Inspeção de Rotina nos Cabos de Força",
-                Especialidade.ENGENHEIRO,
-                NivelExperiencia.JUNIOR,
-                false
-        );
-
-// Adicionando à missão
-        m1.addTarefa(t1);
-        m1.addTarefa(t2);
-        m1.addTarefa(t3);
-        m1.addTarefa(t4);
-        m1.addTarefa(t5);
-        m1.addTarefa(t6);
-        m1.addTarefa(t7);
-        m1.addTarefa(t8);
-        m1.addTarefa(t9);
-        m1.addTarefa(t10);
-        m1.addTarefa(t11);
-        m1.addTarefa(t12);
-        m1.addTarefa(t13);
-        m1.addTarefa(t14);
-        // ==============================
-        // Convocando astronautas
-        // ==============================
         ServiceConvocacao convocacao = new ServiceConvocacao();
+        ServiceTarefa serviceTarefa = new ServiceTarefa();
+        ServiceAlaMedica alaMedica = new ServiceAlaMedica();
+        ServiceRelatorio relatorio = new ServiceRelatorio();
+
+        // ======================================================
+        // ESTAÇÃO ALPHA
+        // ======================================================
+        Estacao estacaoAlpha = new Estacao("Estação Orbital Alpha");
+
+        Astronauta a1 = new Astronauta("Carlos",   LocalDate.of(1990, 5, 10), 1,  Especialidade.ENGENHEIRO, NivelExperiencia.PLENO,  10);
+        Astronauta a2 = new Astronauta("Fernanda", LocalDate.of(1985, 3, 22), 2,  Especialidade.MEDICO,     NivelExperiencia.SENIOR, 20);
+        Astronauta a3 = new Astronauta("Marcos",   LocalDate.of(1988, 11,15), 3,  Especialidade.PILOTO,     NivelExperiencia.SENIOR, 15);
+        Astronauta a4 = new Astronauta("Juliana",  LocalDate.of(1995, 7, 30), 4,  Especialidade.MEDICO,     NivelExperiencia.JUNIOR, 40);
+        Astronauta a5 = new Astronauta("Roberto",  LocalDate.of(1982, 1, 12), 5,  Especialidade.PILOTO,     NivelExperiencia.PLENO,  25);
+        Astronauta a6 = new Astronauta("Beatriz",  LocalDate.of(1992, 9,  5), 6,  Especialidade.ENGENHEIRO, NivelExperiencia.SENIOR, 12);
+        Astronauta a7 = new Astronauta("André",    LocalDate.of(1987, 4, 18), 7,  Especialidade.CIENTISTA,  NivelExperiencia.SENIOR, 18);
+        Astronauta a8 = new Astronauta("Camila",   LocalDate.of(1998, 12, 2), 8,  Especialidade.ZELADOR,    NivelExperiencia.JUNIOR,  3);
+
+        estacaoAlpha.addAstronautas(a1);
+        estacaoAlpha.addAstronautas(a2);
+        estacaoAlpha.addAstronautas(a3);
+        estacaoAlpha.addAstronautas(a4);
+        estacaoAlpha.addAstronautas(a5);
+        estacaoAlpha.addAstronautas(a6);
+        estacaoAlpha.addAstronautas(a7);
+        estacaoAlpha.addAstronautas(a8);
+
+        // Nave 1 — Missão Marte (várias tarefas, algumas concluídas)
+        Nave nave1 = new Nave(estacaoAlpha, "Apollo-11", TamanhoNave.G, StatusNave.DISPONIVEL);
+        estacaoAlpha.addNaves(nave1);
+
+        Missao missaoMarte = new Missao("Missão Marte", StatusMissao.PENDENTE, 3);
+        estacaoAlpha.addMissao(missaoMarte);
+        nave1.setMissao(missaoMarte);
+
+        Tarefa tM1 = new Tarefa("Reparar Painel Solar",              Especialidade.ENGENHEIRO, NivelExperiencia.PLENO,  false);
+        Tarefa tM2 = new Tarefa("Análise Médica da Tripulação",      Especialidade.MEDICO,     NivelExperiencia.SENIOR, false);
+        Tarefa tM3 = new Tarefa("Assumir a Pilotagem",               Especialidade.PILOTO,     NivelExperiencia.PLENO,  false);
+        Tarefa tM4 = new Tarefa("Ajudar os Feridos",                 Especialidade.MEDICO,     NivelExperiencia.JUNIOR, false);
+        Tarefa tM5 = new Tarefa("Manutenção do Sistema de Oxigênio", Especialidade.ENGENHEIRO, NivelExperiencia.SENIOR, false);
+        Tarefa tM6 = new Tarefa("Limpeza dos Dutos de Ventilação",   Especialidade.ZELADOR,    NivelExperiencia.JUNIOR, false);
+        Tarefa tM7 = new Tarefa("Cálculo de Rota Hiperespaço",       Especialidade.PILOTO,     NivelExperiencia.SENIOR, false);
+
+        missaoMarte.addTarefa(tM1);
+        missaoMarte.addTarefa(tM2);
+        missaoMarte.addTarefa(tM3);
+        missaoMarte.addTarefa(tM4);
+        missaoMarte.addTarefa(tM5);
+        missaoMarte.addTarefa(tM6);
+        missaoMarte.addTarefa(tM7);
+
         convocacao.Convocar(nave1, a1);
         convocacao.Convocar(nave1, a2);
         convocacao.Convocar(nave1, a3);
@@ -246,61 +77,26 @@ public class Main {
         convocacao.Convocar(nave1, a7);
         convocacao.Convocar(nave1, a8);
 
-        // ==============================
-        // Atribuindo tarefas
-        // ==============================
-        t1.setAstronautaResponsavel(a1, t1);
-        t1.setAstronautaResponsavel(a1, t11);
-        t1.setAstronautaResponsavel(a1, t12);
-        t1.setAstronautaResponsavel(a1, t13);
-        t1.setAstronautaResponsavel(a1, t14);
-        t2.setAstronautaResponsavel(a2, t2);
-        t3.setAstronautaResponsavel(a5, t3);
-        t4.setAstronautaResponsavel(a4, t4);
-        t5.setAstronautaResponsavel(a9, t5);
-        t6.setAstronautaResponsavel(a6, t6);
-        t7.setAstronautaResponsavel(a8, t7);
-        t8.setAstronautaResponsavel(a3, t8);
-        t9.setAstronautaResponsavel(a7, t9);
-        t10.setAstronautaResponsavel(a10, t10);
+        tM1.setAstronautaResponsavel(a1, tM1);
+        tM2.setAstronautaResponsavel(a2, tM2);
+        tM3.setAstronautaResponsavel(a5, tM3);
+        tM4.setAstronautaResponsavel(a4, tM4);
+        tM5.setAstronautaResponsavel(a6, tM5);
+        tM6.setAstronautaResponsavel(a8, tM6);
+        tM7.setAstronautaResponsavel(a3, tM7);
 
-        // ==============================
-        // QueryDaTripulação
-        // ==============================
-        QueryNave ListaTripulantes = new QueryNave();
+        // Executando algumas tarefas (não todas — taxa variada)
+        serviceTarefa.executarTarefa(tM1);
+        serviceTarefa.executarTarefa(tM2);
+        serviceTarefa.executarTarefa(tM3);
+        serviceTarefa.executarTarefa(tM6);
+        // tM4, tM5, tM7 não executadas — ficam como false
 
-        System.out.println("Lista da Tripulação");
-        System.out.println(ListaTripulantes.TodaTripulacao(nave1));
-        System.out.println();
+        // Nave 2 — Missão Lua (poucos tripulantes, alta taxa de sucesso)
+        Nave nave2 = new Nave(estacaoAlpha, "Artemis-I", TamanhoNave.P, StatusNave.DISPONIVEL);
+        estacaoAlpha.addNaves(nave2);
 
-        ServiceAlaMedica alaMedica = new ServiceAlaMedica();
-        // ==============================
-        // Executando tarefas
-        // ==============================
-        ServiceTarefa serviceTarefa = new ServiceTarefa();
-
-        System.out.println(serviceTarefa.executarTarefa(t1) + "\n");
-        System.out.println(serviceTarefa.executarTarefa(t2) + "\n");
-        System.out.println(serviceTarefa.executarTarefa(t3) + "\n");
-        System.out.println(serviceTarefa.executarTarefa(t4) + "\n");
-        System.out.println(serviceTarefa.executarTarefa(t5) + "\n");
-        System.out.println(serviceTarefa.executarTarefa(t6) + "\n");
-        System.out.println(serviceTarefa.executarTarefa(t7) + "\n");
-        System.out.println(serviceTarefa.executarTarefa(t8) + "\n");
-        System.out.println(serviceTarefa.executarTarefa(t9) + "\n");
-        System.out.println(serviceTarefa.executarTarefa(t10) + "\n");
-
-        System.out.println("\nTarefas executadas.\n");
-
-        // ==============================
-        // QueryDaTripulaçãoApósTarefas
-        // ==============================
-        System.out.println("Lista da Tripulação Após Tarefas");
-        System.out.println(ListaTripulantes.TodaTripulacao(nave1));
-
-        // ==============================
-        // AlaMedica
-        // ==============================
+        // Recuperando astronautas usados na nave1 para usar na nave2
         alaMedica.recuperação(a1);
         alaMedica.recuperação(a2);
         alaMedica.recuperação(a3);
@@ -309,170 +105,172 @@ public class Main {
         alaMedica.recuperação(a6);
         alaMedica.recuperação(a7);
         alaMedica.recuperação(a8);
-        alaMedica.recuperação(a9);
-        alaMedica.recuperação(a10);
+
+        // Resetando disponibilidade manualmente para reutilizar no exemplo
+        a6.setDisponibilidade(Disponibilidade.DISPONIVEL);
+        a7.setDisponibilidade(Disponibilidade.DISPONIVEL);
+        a8.setDisponibilidade(Disponibilidade.DISPONIVEL);
+
+        Missao missaoLua = new Missao("Missão Lua", StatusMissao.PENDENTE, 1);
+        estacaoAlpha.addMissao(missaoLua);
+        nave2.setMissao(missaoLua);
+
+        Tarefa tL1 = new Tarefa("Instalar Antena de Comunicação",  Especialidade.ENGENHEIRO, NivelExperiencia.SENIOR, false);
+        Tarefa tL2 = new Tarefa("Coleta de Amostras Lunares",      Especialidade.CIENTISTA,  NivelExperiencia.SENIOR, false);
+        Tarefa tL3 = new Tarefa("Esterilização do Módulo",         Especialidade.ZELADOR,    NivelExperiencia.JUNIOR, false);
+
+        missaoLua.addTarefa(tL1);
+        missaoLua.addTarefa(tL2);
+        missaoLua.addTarefa(tL3);
+
+        convocacao.Convocar(nave2, a6);
+        convocacao.Convocar(nave2, a7);
+        convocacao.Convocar(nave2, a8);
+
+        tL1.setAstronautaResponsavel(a6, tL1);
+        tL2.setAstronautaResponsavel(a7, tL2);
+        tL3.setAstronautaResponsavel(a8, tL3);
+
+        // Todas as tarefas da missão Lua concluídas — taxa 100%
+        serviceTarefa.executarTarefa(tL1);
+        serviceTarefa.executarTarefa(tL2);
+        serviceTarefa.executarTarefa(tL3);
+
+        // ======================================================
+        // ESTAÇÃO BETA
+        // ======================================================
+        Estacao estacaoBeta = new Estacao("Estação Orbital Beta");
+
+        Astronauta b1 = new Astronauta("Sofia",    LocalDate.of(1993, 2, 14), 11, Especialidade.CIENTISTA,  NivelExperiencia.SENIOR, 5);
+        Astronauta b2 = new Astronauta("Diego",    LocalDate.of(1989, 7,  3), 12, Especialidade.PILOTO,     NivelExperiencia.PLENO,  30);
+        Astronauta b3 = new Astronauta("Leticia",  LocalDate.of(1996, 11,22), 13, Especialidade.MEDICO,     NivelExperiencia.PLENO,  18);
+        Astronauta b4 = new Astronauta("Ricardo",  LocalDate.of(1983, 4, 10), 14, Especialidade.ENGENHEIRO, NivelExperiencia.SENIOR, 8);
+        Astronauta b5 = new Astronauta("Priscila", LocalDate.of(1991, 9, 17), 15, Especialidade.ZELADOR,    NivelExperiencia.PLENO,  22);
+        Astronauta b6 = new Astronauta("Gustavo",  LocalDate.of(1986, 6, 29), 16, Especialidade.PILOTO,     NivelExperiencia.SENIOR, 14);
+
+        estacaoBeta.addAstronautas(b1);
+        estacaoBeta.addAstronautas(b2);
+        estacaoBeta.addAstronautas(b3);
+        estacaoBeta.addAstronautas(b4);
+        estacaoBeta.addAstronautas(b5);
+        estacaoBeta.addAstronautas(b6);
+
+        // Nave 3 — Missão Europa (taxa baixa — muitas tarefas, poucas concluídas)
+        Nave nave3 = new Nave(estacaoBeta, "Voyager-X", TamanhoNave.M, StatusNave.DISPONIVEL);
+        estacaoBeta.addNaves(nave3);
+
+        Missao missaoEuropa = new Missao("Missão Europa", StatusMissao.PENDENTE, 2);
+        estacaoBeta.addMissao(missaoEuropa);
+        nave3.setMissao(missaoEuropa);
+
+        Tarefa tE1 = new Tarefa("Perfurar Crosta de Gelo",               Especialidade.ENGENHEIRO, NivelExperiencia.SENIOR, false);
+        Tarefa tE2 = new Tarefa("Analisar Composição da Água",           Especialidade.CIENTISTA,  NivelExperiencia.SENIOR, false);
+        Tarefa tE3 = new Tarefa("Monitorar Sinais de Vida",              Especialidade.CIENTISTA,  NivelExperiencia.SENIOR, false);
+        Tarefa tE4 = new Tarefa("Manobra de Aproximação",                Especialidade.PILOTO,     NivelExperiencia.SENIOR, false);
+        Tarefa tE5 = new Tarefa("Triagem Médica Pós-Mergulho",           Especialidade.MEDICO,     NivelExperiencia.PLENO,  false);
+        Tarefa tE6 = new Tarefa("Descarte de Resíduos Químicos",         Especialidade.ZELADOR,    NivelExperiencia.PLENO,  false);
+
+        missaoEuropa.addTarefa(tE1);
+        missaoEuropa.addTarefa(tE2);
+        missaoEuropa.addTarefa(tE3);
+        missaoEuropa.addTarefa(tE4);
+        missaoEuropa.addTarefa(tE5);
+        missaoEuropa.addTarefa(tE6);
+
+        convocacao.Convocar(nave3, b1);
+        convocacao.Convocar(nave3, b2);
+        convocacao.Convocar(nave3, b3);
+        convocacao.Convocar(nave3, b4);
+        convocacao.Convocar(nave3, b5);
+        convocacao.Convocar(nave3, b6);
+
+        tE1.setAstronautaResponsavel(b4, tE1);
+        tE2.setAstronautaResponsavel(b1, tE2);
+        tE3.setAstronautaResponsavel(b1, tE3);
+        tE4.setAstronautaResponsavel(b6, tE4);
+        tE5.setAstronautaResponsavel(b3, tE5);
+        tE6.setAstronautaResponsavel(b5, tE6);
+
+        // Apenas 2 de 6 tarefas concluídas — taxa ~33%
+        serviceTarefa.executarTarefa(tE1);
+        serviceTarefa.executarTarefa(tE4);
+        // tE2, tE3, tE5, tE6 não executadas
+
+        // ======================================================
+        // RELATÓRIOS FINAIS
+        // ======================================================
+        System.out.println("\n╔══════════════════════════════════════════════════╗");
+        System.out.println("║             RELATÓRIO GERAL DO SISTEMA           ║");
+        System.out.println("╚══════════════════════════════════════════════════╝\n");
+
+        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("  ESTAÇÃO ALPHA");
+        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println(String.format("  Taxa de sucesso por astronautas : %.2f%%", relatorio.taxaDeEstacaoAstronauta(estacaoAlpha)));
+        System.out.println(String.format("  Taxa de sucesso por missões     : %.2f%%", relatorio.taxaDeEstacaoMissao(estacaoAlpha)));
+        System.out.println(String.format("  Taxa de sucesso por naves       : %.2f%%", relatorio.taxaDeEstacaoNave(estacaoAlpha)));
         System.out.println();
+        System.out.println("OBS: existe apenas uma missão e uma nave em cada estação, por isso as taxas iguais");
 
-        // ==============================
-        // QueryDaTripulaçãoApósAlaMédica
-        // ==============================
-        System.out.println("Lista da Tripulação Após Ala Médica");
-        System.out.println(ListaTripulantes.TodaTripulacao(nave1));
+        System.out.println("\n  [ Missão Marte ]");
+        System.out.println(String.format("    Taxa da missão   : %.2f%%", relatorio.taxaDeSucessoMissao(missaoMarte)));
+
+        System.out.println("\n  [ Missão Lua ]");
+        System.out.println(String.format("    Taxa da missão   : %.2f%%", relatorio.taxaDeSucessoMissao(missaoLua)));
+
+        System.out.println("\n  [ Astronautas Destaque - Alpha ]");
+        System.out.println(String.format("    Carlos  (Engenheiro PLENO)  : %.2f%%", relatorio.taxaDeSucessoDoAstronauta(a1)));
+        System.out.println(String.format("    Fernanda (Médico SENIOR)    : %.2f%%", relatorio.taxaDeSucessoDoAstronauta(a2)));
+        System.out.println(String.format("    Beatriz (Engenheiro SENIOR) : %.2f%%", relatorio.taxaDeSucessoDoAstronauta(a6)));
+        System.out.println(String.format("    André   (Cientista SENIOR)  : %.2f%%", relatorio.taxaDeSucessoDoAstronauta(a7)));
+
+        System.out.println("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("  ESTAÇÃO BETA");
+        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println(String.format("  Taxa de sucesso por astronautas : %.2f%%", relatorio.taxaDeEstacaoAstronauta(estacaoBeta)));
+        System.out.println(String.format("  Taxa de sucesso por missões     : %.2f%%", relatorio.taxaDeEstacaoMissao(estacaoBeta)));
+        System.out.println(String.format("  Taxa de sucesso por naves       : %.2f%%", relatorio.taxaDeEstacaoNave(estacaoBeta)));
         System.out.println();
+        System.out.println("OBS: existe apenas uma missão e uma nave em cada estação, por isso as taxas iguais");
 
-        // ==============================
-        // Verificando estado final
-        // ==============================
-        System.out.println("=== MISSÃO ===");
-        System.out.println(m1);
+        System.out.println("\n  [ Missão Europa ]");
+        System.out.println(String.format("    Taxa da missão   : %.2f%%", relatorio.taxaDeSucessoMissao(missaoEuropa)));
 
-        System.out.println();
+        System.out.println("\n  [ Astronautas Destaque - Beta ]");
+        System.out.println(String.format("    Sofia   (Cientista SENIOR)   : %.2f%%", relatorio.taxaDeSucessoDoAstronauta(b1)));
+        System.out.println(String.format("    Ricardo (Engenheiro SENIOR)  : %.2f%%", relatorio.taxaDeSucessoDoAstronauta(b4)));
+        System.out.println(String.format("    Gustavo (Piloto SENIOR)      : %.2f%%", relatorio.taxaDeSucessoDoAstronauta(b6)));
 
-        System.out.println("=== NAVE ===");
-        System.out.println(nave1);
+        System.out.println("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
-        System.out.println();
-        System.out.println("-----------------------------------------------------------------------------------------");
-        // ==============================
-        // Querys
-        // ==============================
-        QueryMissao ListaTarefas = new QueryMissao();
-        QueryEstacao ListaEstacao = new QueryEstacao();
-        QueryAstronauta ListaTarefasIndividual = new QueryAstronauta();
-        //--------------------------------------------------------------
+        // ======================================================
+        // QUERIES
+        // ======================================================
+        QueryNave queryNave           = new QueryNave();
+        QueryMissao queryMissao       = new QueryMissao();
+        QueryEstacao queryEstacao     = new QueryEstacao();
+        QueryAstronauta queryAstronauta = new QueryAstronauta();
 
-        //Tarefas da Missão
-        System.out.println("Tarefas da Missão");
+        System.out.println("\n╔══════════════════════════════════════════════════╗");
+        System.out.println("║                    QUERIES                       ║");
+        System.out.println("╚══════════════════════════════════════════════════╝\n");
 
-        System.out.println(ListaTarefas.TodasTarefasDaMissao(m1));
+        System.out.println("[ Tripulação da Apollo-11 ]");
+        System.out.println(queryNave.TodaTripulacao(nave1));
 
-        System.out.println();
+        System.out.println("[ Busca tripulante por ID=2 na Apollo-11 ]");
+        System.out.println(queryNave.TripulantePorId(nave1, 2));
 
-        System.out.println(ListaTarefas.BuscarTarefaPorNome(m1, "Reparar Painel Solar"));
-        System.out.println();
-        System.out.println("-----------------------------------------------------------------------------------------");
-        //--------------------------------------------------------------
+        System.out.println("[ Tarefas da Missão Europa ]");
+        System.out.println(queryMissao.TodasTarefasDaMissao(missaoEuropa));
 
-        //Listas das Missões da Estação
-        System.out.println("Listas da estação:");
+        System.out.println("[ Busca missão 'Missão Lua' na Estação Alpha ]");
+        System.out.println(queryEstacao.BuscarMissaoPorNome(estacaoAlpha, "Missão Lua"));
 
-        System.out.println("Missoes:");
-        System.out.println(ListaEstacao.TodasMissoes(estacaoA));
+        System.out.println("[ Tarefas individuais do astronauta Carlos ]");
+        System.out.println(queryAstronauta.TodasTarefasIndividuais(a1));
 
-        System.out.println();
-
-        //Busca especifica dentro da estação
-        if (ListaEstacao.BuscarMissaoPorNome(estacaoA, "Missão Marte") != null) {
-            System.out.println(ListaEstacao.BuscarMissaoPorNome(estacaoA, "Missão Marte"));
-        } else {
-            System.out.println("Nada encontrado");
-        }
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        //Listas dos Astronautas da Estação
-        System.out.println("Astronautas:");
-        System.out.println(ListaEstacao.TodosAstronautasEstacao(estacaoA));
-
-        System.out.println();
-
-        //Busca especifica dentro da estação
-        if (ListaEstacao.BuscarAstronautaEstacaoPorId(estacaoA, 1) != null) {
-            System.out.println(ListaEstacao.BuscarAstronautaEstacaoPorId(estacaoA, 1));
-        } else {
-            System.out.println("Nada encontrado");
-        }
-
-        System.out.println();
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        //Lista das Naves da Estação
-        System.out.println("Naves:");
-        System.out.println(ListaEstacao.TodasEstacaoNaves(estacaoA));
-
-        System.out.println();
-
-        //Busca especifica dentro da estação
-        if (ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-11") != null) {
-            System.out.println(ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-11"));
-        } else {
-            System.out.println("Nada encontrado");
-        }
-
-        //Busca especifica dentro da estação
-        if (ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-00") != null) {
-            System.out.println(ListaEstacao.BuscarNavePorNome(estacaoA, "Apollo-00"));
-        } else {
-            System.out.println("Nada encontrado");
-        }
-
-        System.out.println();
-        System.out.println("-----------------------------------------------------------------------------------------");
-        //--------------------------------------------------------------
-
-        System.out.println("Tarefas individuais do Astronauta:");
-
-        System.out.println(ListaTarefasIndividual.TodasTarefasIndividuais(a1));
-
-        System.out.println();
-
-        //Busca especifica de tarefas dentro do astronauta
-        if (ListaTarefasIndividual.BuscarTarefaIndividual(a1, "Reparar Painel Solar") != null) {
-            System.out.println(ListaTarefasIndividual.BuscarTarefaIndividual(a1, "Reparar Painel Solar"));
-        } else {
-            System.out.println("Nada encontrado");
-        }
-        System.out.println();
-        System.out.println("-----------------------------------------------------------------------------------------");
-        //--------------------------------------------------------------
-        System.out.println("Tripulação da nave:");
-
-        System.out.println(ListaTripulantes.TodaTripulacao(nave1));
-
-        System.out.println();
-
-        //Busca especifica dentro da nave da tripulação
-        if (ListaTripulantes.TripulantePorId(nave1, 2) != null) {
-            System.out.println(ListaTripulantes.TripulantePorId(nave1, 2));
-        } else {
-            System.out.println("Nada encontrado");
-        }
-        System.out.println();
-        System.out.println("-----------------------------------------------------------------------------------------");
-        //--------------------------------------------------------------
-
-        System.out.println("Relatórios");
-        ServiceRelatorio serviceRelatorio = new ServiceRelatorio();
-
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        //Taxa de sucesso individual do astronauta por tarefa
-        System.out.println(String.format("Taxa de sucesso individual do astronauta por tarefa: %.2f%%", serviceRelatorio.taxaDeSucessoDoAstronauta(a1)));
-
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        //Taxa de sucesso dos astronautas daquela estação
-        System.out.println(String.format("Taxa de sucesso dos astronautas daquela estação: %.2f%%", serviceRelatorio.taxaDeEstacaoAstronauta(estacaoA)));
-
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        //Taxa de sucesso das missões da estação
-        System.out.println(String.format("Taxa de sucesso das missões da estação: %.2f%%", serviceRelatorio.taxaDeEstacaoMissao(estacaoA)));
-
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        //Taxa de sucesso das naves por estação
-        System.out.println(String.format("Taxa de sucesso das naves por estação: %.2f%%", serviceRelatorio.taxaDeEstacaoNave(estacaoA)));
-
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        //Taxa de sucesso de tarefas por missão
-        System.out.println(String.format("Taxa de sucesso de tarefas por missão: %.2f%%", serviceRelatorio.taxaDeSucessoMissao(m1)));
-
-
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        //Taxa de sucesso de tarefas por nave
-        System.out.println(String.format("Taxa de sucesso de tarefas por nave: %.2f%%", serviceRelatorio.taxaDeNave(nave1)));
+        System.out.println("[ Busca nave 'Voyager-X' na Estação Beta ]");
+        System.out.println(queryEstacao.BuscarNavePorNome(estacaoBeta, "Voyager-X"));
     }
-
 }
