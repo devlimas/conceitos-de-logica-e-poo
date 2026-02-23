@@ -44,7 +44,7 @@ public class Main {
         estacaoAlpha.addAstronautas(a7);
         estacaoAlpha.addAstronautas(a8);
 
-        // Nave 1 — Missão Marte (várias tarefas, algumas concluídas)
+        // Nave 1 - Missão marte (várias tarefas, algumas concluídas)
         Nave nave1 = new Nave(estacaoAlpha, "Apollo-11", TamanhoNave.G, StatusNave.DISPONIVEL);
         estacaoAlpha.addNaves(nave1);
 
@@ -85,14 +85,14 @@ public class Main {
         tM6.setAstronautaResponsavel(a8, tM6);
         tM7.setAstronautaResponsavel(a3, tM7);
 
-        // Executando algumas tarefas (não todas — taxa variada)
+        // Executando algumas tarefas (não todas, para criar uma taxa variada)
         serviceTarefa.executarTarefa(tM1);
         serviceTarefa.executarTarefa(tM2);
         serviceTarefa.executarTarefa(tM3);
         serviceTarefa.executarTarefa(tM6);
         // tM4, tM5, tM7 não executadas — ficam como false
 
-        // Nave 2 — Missão Lua (poucos tripulantes, alta taxa de sucesso)
+        // Nave 2 - missão Lua (poucos tripulantes, alta taxa de sucesso)
         Nave nave2 = new Nave(estacaoAlpha, "Artemis-I", TamanhoNave.P, StatusNave.DISPONIVEL);
         estacaoAlpha.addNaves(nave2);
 
@@ -131,7 +131,7 @@ public class Main {
         tL2.setAstronautaResponsavel(a7, tL2);
         tL3.setAstronautaResponsavel(a8, tL3);
 
-        // Todas as tarefas da missão Lua concluídas — taxa 100%
+        // Todas as tarefas da missão Lua concluídas - taxa 100%
         serviceTarefa.executarTarefa(tL1);
         serviceTarefa.executarTarefa(tL2);
         serviceTarefa.executarTarefa(tL3);
@@ -155,7 +155,7 @@ public class Main {
         estacaoBeta.addAstronautas(b5);
         estacaoBeta.addAstronautas(b6);
 
-        // Nave 3 — Missão Europa (taxa baixa — muitas tarefas, poucas concluídas)
+        // Nave 3 — Missão Europa (taxa baixa - muitas tarefas, poucas concluídas)
         Nave nave3 = new Nave(estacaoBeta, "Voyager-X", TamanhoNave.M, StatusNave.DISPONIVEL);
         estacaoBeta.addNaves(nave3);
 
