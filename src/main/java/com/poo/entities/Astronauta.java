@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Astronauta extends Pessoa {
 
-    //A escolhe de Integer em vez de UUID foi feita, pelo motivo que eu nao queria um ID grande e feito com String como: 245a8650-e29b-41d4-a716-446655440000
+    //Fiz a escolha de usar Integer em vez de UUID foi feita, pelo motivo que eu nao queria um ID grande e feito com String como: 245a8650-e29b-41d4-a716-446655440000
     private Integer id;
     private Especialidade especialidade;
     private NivelExperiencia nivelExperiencia;

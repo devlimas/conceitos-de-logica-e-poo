@@ -4,14 +4,14 @@ import com.poo.entities.*;
 
 import java.util.List;
 
-public class Relatorio {
+public class ServiceRelatorio {
 
     private Double porcetagem;
 
-    public Relatorio() {
+    public ServiceRelatorio() {
     }
 
-    //Relatorio individual do astronauta
+    //ServiceRelatorio individual do astronauta
     public double taxaDeSucessoDoAstronauta(Astronauta astronauta){
         int contador = 0;
 
@@ -27,10 +27,9 @@ public class Relatorio {
         }
 
         return ( (double) contador/astronauta.getTarefas().size()) * 100;
-
     }
 
-    //Relatorio de tarefas finalizadas da missao
+    //ServiceRelatorio de tarefas finalizadas da missao
     public double taxaDeSucessoMissao(Missao missao){
         int contador = 0;
 
@@ -44,6 +43,7 @@ public class Relatorio {
                 contador++;
             }
         }
+
 
         return ( (double) contador/missao.getTarefas().size()) * 100;
     }

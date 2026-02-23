@@ -29,10 +29,6 @@ public class Tarefa {
         this.isConcluida = isConcluida;
     }
 
-    public void setAstronautaResponsavel(Astronauta astronautaResponsavel) {
-        this.astronautaResponsavel = astronautaResponsavel;
-    }
-
     public Especialidade getEspecialidadeNecessaria() {
         return especialidadeNecessaria;
     }
@@ -67,6 +63,7 @@ public class Tarefa {
         return astronautaResponsavel;
     }
 
+    //Ao atribuir o astronauta a tarefa, dentro do set fazemos a validação
     public void setAstronautaResponsavel(Astronauta astronautaResponsavel, Tarefa tarefa) {
         if (astronautaResponsavel.getFadiga() > 65 || astronautaResponsavel.getStatusSaude().equals(StatusSaude.FERIDO)) {
             throw new AstronautaStatus("Astronauta em recuperação");
@@ -94,11 +91,15 @@ public class Tarefa {
 
     @Override
     public String toString() {
-        return "\n" + "Nome da tarefa: " + getNomeTarefa() + "\n" +
-                "Astronauta responsavel: " + getAstronautaResponsavel().getNome() + "\n" +
+        String nomeAstronauta = (astronautaResponsavel != null)
+                ? astronautaResponsavel.getNome()
+                : "Nenhum";
+
+        return "Nome da tarefa: " + getNomeTarefa() + "\n" +
                 "Especialidade necessaria: " + getEspecialidadeNecessaria() + "\n" +
-                "Tempo da tarefa: " + getTempoTarefa() + " Minutos" + "\n" +
+                "Tempo da tarefa: " + getTempoTarefa() + " Minutos\n" +
                 "Nivel da tarefa: " + getNivelDaTarefa() + "\n" +
-                "Conclusão: " + getConcluida() + "\n";
+                "Conclusão: " + getConcluida() + "\n" +
+                "Astronauta responsável: " + nomeAstronauta + "\n";
     }
 }
