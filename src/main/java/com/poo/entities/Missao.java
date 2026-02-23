@@ -21,8 +21,8 @@ public class Missao {
         this.nomeMissao = nomeMissao;
         this.statusMissao = statusMissao;
 
-        // Fiz a escolha de fazer a prioridade com int, em vez de enum apenas para mostrar outra maneira de ser feita, por mais que não seja recomendado já que enum brilha aqui
-        if(prioridade > 3){
+        //Fiz a escolha de fazer a prioridade com Integer, em vez de enum apenas para mostrar outra maneira de ser feita, por mais que não seja recomendado já que enum brilha aqui
+        if(prioridade > 3 || prioridade < 0){
             throw new Prioridade("O nivel de prioridade é de 1 a 3");
         }
 
