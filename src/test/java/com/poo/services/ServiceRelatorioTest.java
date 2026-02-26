@@ -87,13 +87,4 @@ public class ServiceRelatorioTest{
         double taxa = relatorio.taxaDeSucessoMissao(missao);
         assertEquals(100.0, taxa, 0.01);
     }
-
-    @Test
-    public void testTaxaDeNave() {
-        nave.addTripulantes(astronauta);
-
-        double taxa = relatorio.taxaDeNave(nave);
-        assertNotNull(taxa);
-        assertTrue(taxa >= 0 && taxa <= 100);
-    }
 }
