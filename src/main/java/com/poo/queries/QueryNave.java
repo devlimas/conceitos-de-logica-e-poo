@@ -15,12 +15,9 @@ public class QueryNave {
     }
 
     public Astronauta TripulantePorId(Nave nave, int id) {
-
-        for (Astronauta leitor : nave.getTripulantes()) {
-            if (leitor.getId() == id) {
-                return leitor;
-            }
-        }
-        return null;
+        return nave.getTripulantes().stream()
+                .filter(a -> a.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }

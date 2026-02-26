@@ -15,12 +15,10 @@ public class QueryEstacao {
     }
 
     public Astronauta BuscarAstronautaEstacaoPorId(Estacao estacao, int id) {
-        for (Astronauta leitor : estacao.getAstronautas()) {
-            if (leitor.getId() == id){
-                return leitor;
-            }
-        }
-        return null;
+        return estacao.getAstronautas().stream()
+                .filter(a -> a.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Nave> TodasEstacaoNaves(Estacao estacao) {
@@ -28,12 +26,10 @@ public class QueryEstacao {
     }
 
     public Nave BuscarNavePorNome(Estacao estacao, String nomeNave) {
-        for (Nave leitor : estacao.getNaves()) {
-            if (leitor.getNomeNave().equals(nomeNave)){
-                return leitor;
-            }
-        }
-        return null;
+        return estacao.getNaves().stream()
+                .filter(n -> n.getNomeNave().equals(nomeNave))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Missao> TodasMissoes(Estacao estacao) {
@@ -41,11 +37,9 @@ public class QueryEstacao {
     }
 
     public Missao BuscarMissaoPorNome(Estacao estacao, String nomeMissao) {
-        for (Missao leitor : estacao.getMissoes()) {
-            if (leitor.getNomeMissao().equals(nomeMissao)){
-                return leitor;
-            }
-        }
-        return null;
+        return estacao.getMissoes().stream()
+                .filter(m -> m.getNomeMissao().equals(nomeMissao))
+                .findFirst()
+                .orElse(null);
     }
 }

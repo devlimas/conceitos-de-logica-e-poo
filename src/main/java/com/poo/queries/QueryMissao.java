@@ -15,12 +15,9 @@ public class QueryMissao {
     }
 
     public Tarefa BuscarTarefaPorNome(Missao missao, String nomeTarefa) {
-        for (Tarefa leitor : missao.getTarefas()) {
-            if (leitor.getNomeTarefa().equals(nomeTarefa)){
-                return leitor;
-            }
-        }
-
-        return null;
+        return missao.getTarefas().stream()
+                .filter(t -> t.getNomeTarefa().equals(nomeTarefa))
+                .findFirst()
+                .orElse(null);
     }
 }

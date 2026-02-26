@@ -32,11 +32,8 @@ public class ServiceTarefa {
         }
 
         if (tarefa.getAstronautaResponsavel().getFadiga() > 100){
-            System.out.print("Status da conclusão: ");
             return tarefa.setConcluida(false);
         }
-
-        System.out.print("Status da conclusão: ");
         return tarefa.setConcluida(true);
     }
 

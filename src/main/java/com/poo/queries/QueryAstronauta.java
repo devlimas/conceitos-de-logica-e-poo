@@ -14,12 +14,9 @@ public class QueryAstronauta {
     }
 
     public Tarefa BuscarTarefaIndividual(Astronauta astronauta, String nomeTarefa) {
-        for (Tarefa leitor : astronauta.getTarefas()) {
-            if (leitor.getNomeTarefa().equals(nomeTarefa)){
-                return leitor;
-            }
-        }
-
-        return null;
+        return astronauta.getTarefas().stream()
+                .filter(t -> t.getNomeTarefa().equals(nomeTarefa))
+                .findFirst()
+                .orElse(null);
     }
 }
